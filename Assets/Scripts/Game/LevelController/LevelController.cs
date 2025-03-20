@@ -14,7 +14,7 @@ public class LevelController : MonoBehaviour
     [SerializeField] private float MaxXpMultiplier = 1.2f;
     [SerializeField] private float sliderLerpSpeed = 5f;
 
-    public event System.Action OnLevelUp;
+    public event System.Action<int> OnLevelUp;
 
     private int _currentLevel = 1;
     private float _currentXp = 0;
@@ -73,7 +73,7 @@ public class LevelController : MonoBehaviour
 
         UpdateText();
 
-        OnLevelUp?.Invoke();
+        OnLevelUp?.Invoke(_currentLevel);
     }
 
     private void UpdateText()
