@@ -10,6 +10,7 @@ public class Employee : MonoBehaviour
 
     [Space][SerializeField] protected UnityEvent OnStartTaskEvent;
     [Space][SerializeField] protected UnityEvent OnCompleteTaskEvent;
+
     public event System.Action<float, float> OnTaskTimeChanged;
     private Coroutine _taskCoroutine;
 

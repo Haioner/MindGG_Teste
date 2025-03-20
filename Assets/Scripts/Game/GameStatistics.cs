@@ -5,6 +5,7 @@ public class GameStatistics
     private float art;
     private float sound;
     private float marketing;
+    private int bugs;
 
     public event System.Action OnValuesChanged;
 
@@ -48,10 +49,20 @@ public class GameStatistics
         }
     }
 
+    public int BugsValue
+    {
+        get => bugs;
+        set
+        {
+            bugs = value;
+            if(bugs < 0) bugs = 0;
+            OnValuesChanged?.Invoke();
+        }
+    }
 
     public float GetMediumValue()
     {
-        return (ProgrammingValue + ArtValue + SoundValue + MarketingValue) / 4;
+        return (ProgrammingValue + ArtValue + SoundValue + MarketingValue) / 5;
     }
 
     public void ResetWhitoutEvent()

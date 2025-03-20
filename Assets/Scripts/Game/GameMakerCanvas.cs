@@ -56,6 +56,7 @@ public class GameMakerCanvas : MonoBehaviour
         return $"Programming: {_gameMakerController.GetGameStatistics().ProgrammingValue}\n" +
                $"Art: {_gameMakerController.GetGameStatistics().ArtValue}\n" +
                $"Sound: {_gameMakerController.GetGameStatistics().SoundValue}\n" +
-               $"Marketing: {_gameMakerController.GetGameStatistics().MarketingValue}";
+               $"Marketing: {_gameMakerController.GetGameStatistics().MarketingValue}\n" +
+               $"Bugs: {_gameMakerController.GetGameStatistics().BugsValue}";
     }
 }
