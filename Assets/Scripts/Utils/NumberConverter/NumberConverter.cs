@@ -1,3 +1,5 @@
+using System.Numerics;
+
 public class NumberConverter
 {
     /// <summary>
@@ -18,22 +20,22 @@ public class NumberConverter
     /// A formatted string representing the number with a suffix (e.g., "1.5K" for 1500, "2M" for 2,000,000).
     /// If the number is less than 1000, it may include decimals depending on the value of <paramref name="canFloatNumber"/>.
     /// </returns>
-    public static string ConvertNumberToString(double number, bool canFloatNumber = true, string BigDigitsFormatter = "F3")
+    public static string ConvertNumberToString(string numberString, bool canFloatNumber = true, string BigDigitsFormatter = "F3")
     {
         string[] suffixes = { "", "K", "M", "B", "T", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
                               "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Aa", "Bb", "Cc", "Dd", "Ee", "Ff", "Gg", "Hh", "Ii", "Jj", "Kk", "Ll",
                               "Mm", "Nn", "Oo", "Pp", "Qq", "Rr", "Ss", "Tt", "Uu", "Vv", "Ww", "Xx", "Yy", "Zz" };
 
         int suffixIndex = 0;
-        double convertedNumber = number;
+        BigInteger convertedNumber = BigInteger.Parse(numberString);
 
-        while (convertedNumber >= 1000.0 && suffixIndex < suffixes.Length - 1)
+        while (convertedNumber >= 1000 && suffixIndex < suffixes.Length - 1)
         {
-            convertedNumber /= 1000.0;
+            convertedNumber /= 1000;
             suffixIndex++;
         }
 
-        string format = canFloatNumber ? ((number < 1000) ? ((convertedNumber % 1 == 0) ? "F0" : "F2") : BigDigitsFormatter) : "F0";
+        string format = canFloatNumber ? ((convertedNumber < 1000) ? ((convertedNumber % 1 == 0) ? "F0" : "F2") : BigDigitsFormatter) : "F0";
         return $"{convertedNumber.ToString(format)} {suffixes[suffixIndex]}";
     }
 

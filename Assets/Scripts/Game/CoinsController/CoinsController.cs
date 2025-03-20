@@ -1,13 +1,14 @@
+using System.Numerics;
 using UnityEngine;
 using TMPro;
 
 public class CoinsController : MonoBehaviour, ICoins
 {
-    public float AccumulatedCoins { get; private set; }
     [SerializeField] private TextMeshProUGUI coinText;
-    private float _coins;
+    public BigInteger AccumulatedCoins { get; private set; }
+    private BigInteger _coins;
 
-    public event System.Action OnAddCoin;
+    public event System.Action<BigInteger> OnAddCoin;
 
     private void Start()
     {
@@ -16,20 +17,27 @@ public class CoinsController : MonoBehaviour, ICoins
 
     private void InitCoins()
     {
-        coinText.text = NumberConverter.ConvertNumberToString(_coins, false);
-        OnAddCoin?.Invoke();
+        coinText.text = NumberConverter.ConvertNumberToString(_coins.ToString(), false);
+        OnAddCoin?.Invoke(_coins);
     }
 
-    public float GetCoins()
+    public BigInteger GetCoins()
     {
         return _coins;
     }
 
-    public void ChangeCoins(float amount)
+    public void ChangeCoins(BigInteger amount)
     {
-        _coins += Mathf.FloorToInt(amount);
-        AccumulatedCoins += Mathf.FloorToInt(amount);
-        coinText.text = NumberConverter.ConvertNumberToString(_coins, false);
-        OnAddCoin?.Invoke();
+        _coins += amount;
+        AccumulatedCoins += amount;
+        coinText.text = NumberConverter.ConvertNumberToString(_coins.ToString(), false);
+        OnAddCoin?.Invoke(_coins);
+    }
+
+    [ContextMenu("AddCoins")]
+    public void SetCoins()
+    {
+        string LargeConstant = "999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999";
+        ChangeCoins(BigInteger.Parse(LargeConstant));
     }
 }

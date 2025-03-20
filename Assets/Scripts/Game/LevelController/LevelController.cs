@@ -62,7 +62,7 @@ public class LevelController : MonoBehaviour
     }
 
     [ContextMenu("LevelUp")]
-    private void LevelUp()
+    public void LevelUp()
     {
         _currentLevel++;
         currentMaxXP *= MaxXpMultiplier;
@@ -87,8 +87,8 @@ public class LevelController : MonoBehaviour
 
     private string GetXpText()
     {
-        string convertedXP = NumberConverter.ConvertNumberToString(_currentXp);
-        string convertedMaxXP = NumberConverter.ConvertNumberToString(currentMaxXP);
+        string convertedXP = NumberConverter.ConvertNumberToString(_currentXp.ToString());
+        string convertedMaxXP = NumberConverter.ConvertNumberToString(currentMaxXP.ToString());
         return $"{convertedXP}/{convertedMaxXP}";
     }
     #endregion

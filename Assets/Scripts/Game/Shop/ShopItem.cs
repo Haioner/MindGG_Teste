@@ -1,10 +1,12 @@
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using System.Numerics;
 
 public class ShopItem : MonoBehaviour
 {
     [Header("Item Data")]
+    [SerializeField] private Button upgradeButton;
     [SerializeField] private string itemID;
     public bool isPurchased { get; set; }
 
@@ -12,14 +14,15 @@ public class ShopItem : MonoBehaviour
     [Tooltip("-1 To disable level")]
     [SerializeField] private int itemLevel = 1;
     [SerializeField] private int maxLevel = 10;
+    [SerializeField] private int levelAdd = 1;
 
     [Header("Price")]
     [SerializeField] private float initialPrice;
-    private float _currentPrice;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private TextMeshProUGUI levelUpText;
 
     private ShopManager _shopManager;
 
@@ -32,17 +35,25 @@ public class ShopItem : MonoBehaviour
 
         _shopManager = FindFirstObjectByType<ShopManager>();
 
-        GetComponent<Button>().onClick.AddListener(OnClick);
+        upgradeButton.onClick.AddListener(OnClick);
         UpdateItem();
     }
 
     public string GetItemID() => itemID;
 
+    public void UpdateItem()
+    {
+        SetPriceText();
+        SetLevelText();
+        SetLevelUpText();
+        UpdateUnlocked();
+    }
+
     private void OnClick()
     {
-        if(_currentPrice <= _shopManager.iCoins.GetCoins() && itemLevel < maxLevel && !isPurchased)
+        if(GetPrice() <= _shopManager.iCoins.GetCoins() && itemLevel < maxLevel && !isPurchased)
         {
-            _shopManager.iCoins.ChangeCoins(-_currentPrice);
+            _shopManager.iCoins.ChangeCoins(-GetPrice());
             Unlock();
             LevelUp();
             UpdateItem();
@@ -55,7 +66,13 @@ public class ShopItem : MonoBehaviour
         if (itemLevel == -1) return;
 
         if (itemLevel < maxLevel)
-            itemLevel++;
+            itemLevel += levelAdd;
+
+        if(itemLevel >= maxLevel)
+        {
+            itemLevel = maxLevel;
+            levelAdd = 0;
+        }
     }
 
     private void Unlock()
@@ -64,16 +81,52 @@ public class ShopItem : MonoBehaviour
             isPurchased = true;
     }
 
-    public void UpdateItem()
+    #region Price
+    public void SetLevelUpgrade(int value)
     {
-        UpdatePrice();
-        SetPriceText();
-        SetLevelText();
-        UpdateUnlocked();
+        if (itemLevel == -1 || itemLevel >= maxLevel) return;
+        levelAdd = value;
+        UpdateItem();
     }
 
-    private void UpdatePrice() => _currentPrice = Mathf.RoundToInt(initialPrice * Mathf.Pow(_shopManager.PriceMultiplier, itemLevel - 1));
-    private void SetPriceText() => priceText.text = NumberConverter.ConvertNumberToString(_currentPrice, false);
-    private void SetLevelText() => levelText.text = "Lvl " + NumberConverter.ConvertNumberToString(itemLevel, false);
+    public void SetMaxLevelUpgrade()
+    {
+        if (itemLevel == -1 || itemLevel >= maxLevel) return;
+        levelAdd = maxLevel - itemLevel;
+        UpdateItem();
+    }
+
+    public BigInteger GetMinimalPrice(int level)
+    {
+        return (BigInteger)Mathf.Floor(initialPrice * _shopManager.PriceMultiplier *  level);
+    }
+
+    private BigInteger GetCumulativePrice(int startLevel, int endLevel)
+    {
+        BigInteger cumulativePrice = 0;
+        for (int i = startLevel; i < endLevel; i++)
+        {
+            cumulativePrice += GetMinimalPrice(i);
+        }
+        return cumulativePrice;
+    }
+
+    private BigInteger GetPrice()
+    {
+        if (itemLevel == -1 || itemLevel >= maxLevel) return 0;
+
+        int targetLevel = itemLevel + levelAdd;
+        if (targetLevel > maxLevel) targetLevel = maxLevel;
+
+        int startLevel = itemLevel;
+        if (startLevel > targetLevel) startLevel = targetLevel;
+
+        return GetCumulativePrice(startLevel, targetLevel);
+    }
+    #endregion
+
+    private void SetPriceText() => priceText.text = NumberConverter.ConvertNumberToString(GetPrice().ToString(), false);
+    private void SetLevelText() => levelText.text = "Lvl " + NumberConverter.ConvertNumberToString(itemLevel.ToString(), false);
+    private void SetLevelUpText() { if(levelUpText != null) levelUpText.text = "Lvl Up x" + NumberConverter.ConvertNumberToString(levelAdd.ToString(), false); }
     public void UpdateUnlocked() { if(itemLevel == -1) levelText.text = isPurchased ? "Purchased" : "Locked"; }
 }

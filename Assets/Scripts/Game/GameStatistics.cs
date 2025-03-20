@@ -60,7 +60,7 @@ public class GameStatistics
         }
     }
 
-    public float GetMediumValue()
+    public float GetAvarageValue()
     {
         return (ProgrammingValue + ArtValue + SoundValue + MarketingValue) / 5;
     }
@@ -71,6 +71,7 @@ public class GameStatistics
         art = 0;
         sound = 0;
         marketing = 0;
+        bugs = 0;
     }
 
     public void Reset()

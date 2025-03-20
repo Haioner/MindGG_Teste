@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class Programmer : Employee
 {
-    [Header("Programmer")]
-    [SerializeField] private float programmerValue = 10f;
-
     [Header("Bugs")]
     [SerializeField] private int bugFixes = 1;
     [SerializeField] private float chanceToFixBug = 0.5f;
@@ -34,7 +31,7 @@ public class Programmer : Employee
     public override void FinishTask()
     {
         base.FinishTask();
-        _gameMakerController.GetGameStatistics().ProgrammingValue += programmerValue;
+        _gameMakerController.GetGameStatistics().ProgrammingValue += employeeValue;
     }
 
     #region Fix Bugs

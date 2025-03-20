@@ -99,7 +99,7 @@ public class GameMakerController : MonoBehaviour
         {
             float randBug = Random.value;
             //The more average game statistics, the more bugs
-            float mediumValue = gameStatistics.GetMediumValue();
+            float mediumValue = gameStatistics.GetAvarageValue();
             float adjustedBugChance = Mathf.Clamp(bugChanceMultiplier * (mediumValue / 100), 0, maxBugChance);
             if (randBug <= adjustedBugChance)
             {
