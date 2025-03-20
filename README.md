@@ -16,5 +16,5 @@ Ideia de jogo :
 Jogo idle de criar jogos. Comanda area de programação, arte, publicidade... contrata Leaders pra automatizar, manda fazer jogos e ganhar dinheiro com eles no mercado.
 O jogo tem  popularidade, que multiplica os ganhos, ou sobe ou desce, e vai caindo com o tempo.
 
-20/03/2025 - 01:35 : Primeiro foi adicionado alguns sistemas genericos, coins, level, shop.
+20/03/2025 - 01:35 : Primeiro foi adicionado alguns sistemas genericos, coins, level, shop. \n
 20/03/2025 - 02:51 : Decidido o tema do jogo "Desenvolvimento de jogos" o jogador controla um estudio que cria jogos. Adicionado o sistema "Employee Base" para ser o funcionário base, e então cada funcionário tem um tipo diferente como programador, artista... Também foi adicionado o "Game Controller" pra ter os valores do jogo, como porcetagem do jogo completo, qual o peso de programação do funcionário, peso de arte...
