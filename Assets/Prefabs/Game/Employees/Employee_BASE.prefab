@@ -92,23 +92,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97075b7848fefe94990f28cd2528fb9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskTime: 1
+  taskTime: 5
   timeMultiplier: 1
   OnStartTaskEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2491404634486860523}
-        m_TargetAssemblyTypeName: DG.Tweening.DOTweenAnimation, Assembly-CSharp-firstpass
-        m_MethodName: DORestart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  OnCompleteTaskEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8640516691063028637
 GameObject:
   m_ObjectHideFlags: 0

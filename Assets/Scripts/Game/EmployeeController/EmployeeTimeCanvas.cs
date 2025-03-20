@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TimeCanvas : MonoBehaviour
+public class EmployeeTimeCanvas : MonoBehaviour
 {
     [SerializeField] private Slider timeSlider;
     [Space][SerializeField] private UnityEvent OnSliderStart;

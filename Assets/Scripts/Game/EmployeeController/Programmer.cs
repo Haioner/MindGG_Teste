@@ -7,6 +7,6 @@ public class Programmer : Employee
     public override void FinishTask()
     {
         base.FinishTask();
-        GameController.instance.GetGameStatistics().ProgrammingValue += programmerValue;
+        GameMakerController.instance.GetGameStatistics().ProgrammingValue += programmerValue;
     }
 }
