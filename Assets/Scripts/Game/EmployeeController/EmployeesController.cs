@@ -5,12 +5,17 @@ public class EmployeesController : MonoBehaviour
 {
     [SerializeField] private EmployeeSO employeeData;
     [SerializeField] private Employee employeePrefab;
-    [SerializeField] private float spawnXOffset;
+    [SerializeField] private float spawnXOffset = 1.5f;
     [SerializeField] private List<Employee> employees = new List<Employee>();
 
     private void Awake()
     {
-        if(employees.Count > 0)
+        InitStaterEmployees();
+    }
+
+    public void InitStaterEmployees()
+    {
+        if (employees.Count > 0)
         {
             foreach (var employee in employees)
             {
@@ -18,7 +23,7 @@ public class EmployeesController : MonoBehaviour
                 employee.CurrentTaskTime = employeeData.StartTaskTime;
                 employee.EmployeeValue = employeeData.StartEmployeeValue;
 
-                if(employee is Programmer programmer)
+                if (employee is Programmer programmer)
                 {
                     programmer.CurrentBugFixChance = ((ProgrammerSO)employeeData).ChanceToFixBug;
                 }
@@ -55,7 +60,12 @@ public class EmployeesController : MonoBehaviour
         }
     }
 
-    public float GetFirstEmployeeValue() => employees[0].EmployeeValue;
+    public float GetFirstEmployeeValue() 
+    {
+        if (employees.Count > 0) 
+            return employees[0].EmployeeValue;
+        return 0;
+    }
 
     public void AddEmployeesValue(float value)
     {
@@ -69,7 +79,12 @@ public class EmployeesController : MonoBehaviour
         }
     }
 
-    public float GetFirstEmployeeTaskTime() => employees[0].CurrentTaskTime;
+    public float GetFirstEmployeeTaskTime()
+    {
+        if (employees.Count > 0)
+            return employees[0].CurrentTaskTime;
+        return 0;
+    }
 
     public void ReduceEmployeesTaskTime(float timeReduction)
     {
@@ -83,7 +98,12 @@ public class EmployeesController : MonoBehaviour
         }
     }
 
-    public float GetFirstEmployeeChanceToFixBug() => ((Programmer)employees[0])?.CurrentBugFixChance ?? 0f;
+    public float GetFirstEmployeeChanceToFixBug()
+    {
+        if (employees.Count > 0)
+            return ((Programmer)employees[0])?.CurrentBugFixChance ?? 0f;
+        return 0f;
+    }
 
     public void IncreaseChanceToFixBug(float chanceIncrease)
     {

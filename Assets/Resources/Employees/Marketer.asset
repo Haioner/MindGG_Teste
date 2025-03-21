@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce402ca7ac4974c49accf8888a4a73c6, type: 3}
-  m_Name: Employee
+  m_Name: Marketer
   m_EditorClassIdentifier: 
-  EmployeeName: 
+  EmployeeName: Marketer
   EmployeeSprite: {fileID: 6645427384175290001, guid: 4dffe6eab57ca4e4ba2f967307bd1c29, type: 3}
   StartEmployeeValue: 10
   StartTaskTime: 5

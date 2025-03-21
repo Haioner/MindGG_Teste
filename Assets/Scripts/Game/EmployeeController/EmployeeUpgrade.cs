@@ -26,6 +26,13 @@ public class EmployeeUpgrade : ShopItem_Action
 
     private void AddNewEmployee(int addLevel, EmployeeSO employeeSO)
     {
+        if(employeesController.GetEmployeeCount() <= 0)
+        {
+            employeesController.AddNewEmployee();
+            employeesController.InitStaterEmployees();
+            return;
+        }
+
         int currentLevel = shopItem.GetCurrentLevel();
         int previousLevel = currentLevel - addLevel;
         int employeesToAdd = (currentLevel / employeeSO.PerLevel_AddEmployeesCount) - (previousLevel / employeeSO.PerLevel_AddEmployeesCount);
