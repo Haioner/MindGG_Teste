@@ -1,11 +1,10 @@
 {
-    "name": "ShopManager",
+    "name": "FloatNumber",
     "rootNamespace": "",
     "references": [
-        "GUID:239a4cb1f1a18674d85f9ca9f02d15c8",
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:6aa3978d5a11df94da83e1eb1237a567",
-        "GUID:d3b4b9dae5b2da44683babe61df42d20"
+        "GUID:d45327c7ed057924f915fdb0e3a061ff"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

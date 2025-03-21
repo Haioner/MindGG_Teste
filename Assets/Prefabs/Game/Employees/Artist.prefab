@@ -82,8 +82,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e40a32f037b2949a1695d1f3ec6a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  employeeData: {fileID: 11400000, guid: ef9621f22416db641bff08e39eda70fe, type: 2}
+  EmployeeData: {fileID: 0}
   timeMultiplier: 1
+  floatNumberColor: {r: 0.85098046, g: 0.25882354, b: 0, a: 1}
+  floatNumberRadius: 0.1
+  floatNumberPreffix: 'Art: '
   OnStartTaskEvent:
     m_PersistentCalls:
       m_Calls:

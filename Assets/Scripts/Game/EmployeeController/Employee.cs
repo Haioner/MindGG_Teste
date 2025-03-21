@@ -10,17 +10,22 @@ public class Employee : MonoBehaviour
     [SerializeField] protected float timeMultiplier = 1f;
     protected float _currentTime = 0f;
 
+    [Header("FloatNumber")]
+    [SerializeField] protected Color floatNumberColor = Color.white;
+    [SerializeField] protected float floatNumberRadius = 0.5f;
+    [SerializeField] protected string floatNumberPreffix = "";
+
+    [Space][SerializeField] protected UnityEvent OnStartTaskEvent;
+    [Space][SerializeField] protected UnityEvent OnCompleteTaskEvent;
+    public event System.Action<float, float> OnTaskTimeChanged;
+    private Coroutine _taskCoroutine;
+
     protected float _currentTaskTime;
     public float CurrentTaskTime
     {
         get => _currentTaskTime;
         set => _currentTaskTime = value;
     }
-
-    [Space][SerializeField] protected UnityEvent OnStartTaskEvent;
-    [Space][SerializeField] protected UnityEvent OnCompleteTaskEvent;
-    public event System.Action<float, float> OnTaskTimeChanged;
-    private Coroutine _taskCoroutine;
 
     protected float _employeeValue;
     public float EmployeeValue
@@ -30,10 +35,17 @@ public class Employee : MonoBehaviour
     }
 
     protected EmployeesController employeesController;
+    protected ObjectPool floatNumberObjectPool;
+
+    public virtual void Awake()
+    {
+        floatNumberObjectPool = GameObject.FindGameObjectWithTag("FloatNumberObjectPool").GetComponent<ObjectPool>();
+        employeesController = GetComponentInParent<EmployeesController>();
+    }
 
     public virtual void Start()
     {
-        employeesController = GetComponentInParent<EmployeesController>();
+
     }
 
     private void OnMouseDown()
@@ -56,7 +68,11 @@ public class Employee : MonoBehaviour
         }
     }
 
-    public virtual void FinishTask() => OnCompleteTaskEvent?.Invoke();
+    public virtual void FinishTask()
+    {
+        CreateFloatNumber();
+        OnCompleteTaskEvent?.Invoke();
+    }
 
     private IEnumerator CalculateTaskTimer()
     {
@@ -70,5 +86,18 @@ public class Employee : MonoBehaviour
 
         FinishTask();
         _taskCoroutine = null;
+    }
+
+    public virtual void CreateFloatNumber()
+    {
+        Vector2 randomOffset = Random.insideUnitCircle * floatNumberRadius;
+        Vector3 spawnPosition = transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
+        GameObject floatNumber = floatNumberObjectPool.GetObject_SetPosAndRot(spawnPosition, Quaternion.identity);
+        floatNumber.GetComponent<FloatNumber>().InitFloatNumber(floatNumberPreffix + FloatNumberText(), floatNumberObjectPool, floatNumberColor);
+    }
+
+    public virtual string FloatNumberText()
+    {
+        return NumberConverter.ConvertNumberToString(_employeeValue.ToString(), false);
     }
 }

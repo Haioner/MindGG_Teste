@@ -13,6 +13,13 @@ public class Programmer : Employee
         set => _currentBugFixChance = value;
     }
 
+    private int _currentBugFix;
+    public int CurrentBugFix
+    {
+        get => _currentBugFix;
+        set => _currentBugFix = value;
+    }
+
     public override void Start()
     {
         base.Start();
@@ -64,7 +71,8 @@ public class Programmer : Employee
                 float randFix = Random.value;
                 if (_gameMakerController.GetGameStatistics().BugsValue > 0 && randFix <= _currentBugFixChance)
                 {
-                    _gameMakerController.GetGameStatistics().BugsValue -= programmerSO.BugFixes;
+                    _gameMakerController.GetGameStatistics().BugsValue -= _currentBugFix;
+                    CreateBugFixFloatNumber();
                 }
                 yield return new WaitForSeconds(programmerSO.BugFixRate);
             }
@@ -73,6 +81,14 @@ public class Programmer : Employee
         {
             Debug.LogError("EmployeeData is not of type ProgrammerSO!");
         }
+    }
+
+    private void CreateBugFixFloatNumber()
+    {
+        Vector2 randomOffset = Random.insideUnitCircle * floatNumberRadius;
+        Vector3 spawnPosition = transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
+        GameObject floatNumber = floatNumberObjectPool.GetObject_SetPosAndRot(spawnPosition, Quaternion.identity);
+        floatNumber.GetComponent<FloatNumber>().InitFloatNumber($"BugFixed: {_currentBugFix}", floatNumberObjectPool, floatNumberColor);
     }
     #endregion
 }

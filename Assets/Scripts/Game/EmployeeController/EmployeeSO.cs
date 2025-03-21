@@ -8,6 +8,7 @@ public class EmployeeSO : ScriptableObject
     public Sprite EmployeeSprite;
     public float StartEmployeeValue = 10f;
     public float StartTaskTime = 5f;
+    public Employee employeePrefab;
 
     [Header("Task Upgrade")]
     public int PerLevel_ReduceTaskTime = 10;

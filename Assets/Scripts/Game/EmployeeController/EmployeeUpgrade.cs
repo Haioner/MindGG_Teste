@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class EmployeeUpgrade : ShopItem_Action
 {
     protected EmployeesController employeesController;
@@ -12,6 +10,7 @@ public class EmployeeUpgrade : ShopItem_Action
 
     public override void OnPurchase(int addLevel, bool isPurchased)
     {
+        base.OnPurchase(addLevel, isPurchased);
         LevelUp_Employees(addLevel);
     }
 
@@ -30,10 +29,9 @@ public class EmployeeUpgrade : ShopItem_Action
         {
             employeesController.AddNewEmployee();
             employeesController.InitStaterEmployees();
-            return;
         }
 
-        int currentLevel = shopItem.GetCurrentLevel();
+        int currentLevel = _shopItem.GetCurrentLevel();
         int previousLevel = currentLevel - addLevel;
         int employeesToAdd = (currentLevel / employeeSO.PerLevel_AddEmployeesCount) - (previousLevel / employeeSO.PerLevel_AddEmployeesCount);
 
@@ -48,7 +46,7 @@ public class EmployeeUpgrade : ShopItem_Action
 
     private void ReduceTaskTime(int addLevel, EmployeeSO employeeSO)
     {
-        int currentLevel = shopItem.GetCurrentLevel();
+        int currentLevel = _shopItem.GetCurrentLevel();
         int previousLevel = currentLevel - addLevel;
         int reduceTaskTimeCount = 0;
 

@@ -92,8 +92,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97075b7848fefe94990f28cd2528fb9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  employeeData: {fileID: 11400000, guid: ef9621f22416db641bff08e39eda70fe, type: 2}
+  EmployeeData: {fileID: 0}
   timeMultiplier: 1
+  floatNumberColor: {r: 1, g: 1, b: 1, a: 1}
+  floatNumberRadius: 0.1
+  floatNumberPreffix: 
   OnStartTaskEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -175,7 +178,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 9410e7a31d3db7641ac74efa40f495c3, type: 3}
-  m_Color: {r: 1, g: 0.7334804, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -21,3 +21,4 @@ O jogo tem  popularidade, que multiplica os ganhos, ou sobe ou desce, e vai cain
 20/03/2025 - 04:14 : O criador de jogos começa somente quando o primeiro funcionário termina uma task. Ainda não foi adicionado funcionalidade de "Popularidade" do jogo, pra ir dando dinheiro por tempo e popularidade.  
 20/03/2025 - 05:21 : Com o tempo e, relativo ao tamanho do jogo, vão surgindo X bugs, para piorar a qualidade do jogo. O funcionário "programador" vai arrumando os bugs com X de chance de arrumar X bugs.  
 21/03/2025 - 04:30 : O jogador vai publicando jogos, e os jogos vão dando dinheiro com o tempo, baseado na popularidade, e vai decaindo, quanto mais fama mais rapido cai e da mais dinheiro.  
+21/03/2025 - 20:30 : Automatizei a criação dos employees, agora da pra colocar quantos quiser, pelo valor que quiser pra desbloquear a area de cada um.

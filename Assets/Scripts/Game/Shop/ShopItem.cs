@@ -28,6 +28,7 @@ public class ShopItem : MonoBehaviour
     private bool _isMaxSelected;
     private Coroutine _maxLevelUpgradeCoroutine;
 
+    public event System.Action OnFailBuy;
     public event System.Action<int, bool> OnPurchaseItem;
     public event System.Action<int> OnChangeLevelAdd;
 
@@ -56,6 +57,7 @@ public class ShopItem : MonoBehaviour
     public int GetCurrentLevel() => itemLevel;
     public int GetMaxLevel() => maxLevel;
     public int GetLevelAdd() => levelAdd;
+    public void SetInitialPrice(float newInitialPrice) { initialPrice = newInitialPrice; UpdateItem(); }
 
     public void UpdateItem()
     {
@@ -67,7 +69,10 @@ public class ShopItem : MonoBehaviour
 
     private void OnClick()
     {
-        if(GetPrice() <= _shopManager.iCoins.GetCoins() && itemLevel < maxLevel && !isPurchased)
+        if (GetPrice() > _shopManager.iCoins.GetCoins())
+            OnFailBuy?.Invoke();
+
+        if (GetPrice() <= _shopManager.iCoins.GetCoins() && itemLevel < maxLevel && !isPurchased)
         {
             int previousLevel = itemLevel;
             _shopManager.iCoins.ChangeCoins(-GetPrice());
@@ -167,7 +172,8 @@ public class ShopItem : MonoBehaviour
 
     private double GetPrice()
     {
-        if (itemLevel == -1 || itemLevel >= maxLevel) return 0;
+        if (itemLevel == -1) return initialPrice;
+        if (itemLevel >= maxLevel) return 0;
 
         int targetLevel = itemLevel + levelAdd;
         if (targetLevel > maxLevel) targetLevel = maxLevel;
@@ -182,11 +188,12 @@ public class ShopItem : MonoBehaviour
     private void SetPriceText() => priceText.text = NumberConverter.ConvertNumberToString(GetPrice().ToString(), true);
     private void SetLevelText()
     {
+        if(levelText.Count <= 0) return;
         foreach (var text in levelText)
         {
             text.text = "Lvl " + NumberConverter.ConvertNumberToString(itemLevel.ToString(), false);
         }
     }
     private void SetLevelUpText() { if(levelUpText != null) levelUpText.text = "Lvl Up x" + NumberConverter.ConvertNumberToString(levelAdd.ToString(), false); }
-    public void UpdateUnlocked() { if(itemLevel == -1) levelText[0].text = isPurchased ? "Purchased" : "Locked"; }
+    public void UpdateUnlocked() { if(itemLevel == -1 && levelText.Count > 0) levelText[0].text = isPurchased ? "Purchased" : "Locked"; }
 }

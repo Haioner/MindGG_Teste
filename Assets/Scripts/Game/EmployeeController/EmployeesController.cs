@@ -3,14 +3,57 @@ using UnityEngine;
 
 public class EmployeesController : MonoBehaviour
 {
+    [Header("Employee Data")]
     [SerializeField] private EmployeeSO employeeData;
-    [SerializeField] private Employee employeePrefab;
+
+    [Header("Instantiate")]
+    [SerializeField] private int startEmployeesCount = 0;
+    [SerializeField] private Transform spawnPos;
     [SerializeField] private float spawnXOffset = 1.5f;
     [SerializeField] private List<Employee> employees = new List<Employee>();
 
+    [Header("Unlock")]
+    [SerializeField] private bool startLocked = true;
+    [SerializeField] private GameObject unlockObject, employeeUpgrade;
+
     private void Awake()
     {
+        StartLocked();
+        InstantiateStarterEmployees();
         InitStaterEmployees();
+    }
+
+    public void InitEmployeeData(EmployeeControllerData employeeControllerData)
+    {
+        employeeData = employeeControllerData.EmployeeData;
+        startEmployeesCount = employeeControllerData.StartEmployeesCount;
+        startLocked = employeeControllerData.StartLocked;
+        unlockObject.GetComponent<ShopItem>().SetInitialPrice(employeeControllerData.InitialUnlockPrice);
+    }
+
+    private void StartLocked()
+    {
+        if (startLocked)
+        {
+            unlockObject.SetActive(true);
+            employeeUpgrade.SetActive(false);
+        }
+        else
+        {
+            unlockObject.SetActive(false);
+            employeeUpgrade.SetActive(true);
+        }
+    }
+
+    private void InstantiateStarterEmployees()
+    {
+        if (startEmployeesCount > 0 && !startLocked)
+        {
+            for (int i = 0; i < startEmployeesCount; i++)
+            {
+                AddNewEmployee();
+            }
+        }
     }
 
     public void InitStaterEmployees()
@@ -26,6 +69,7 @@ public class EmployeesController : MonoBehaviour
                 if (employee is Programmer programmer)
                 {
                     programmer.CurrentBugFixChance = ((ProgrammerSO)employeeData).ChanceToFixBug;
+                    programmer.CurrentBugFix = ((ProgrammerSO)employeeData).BugFixes;
                 }
             }
         }
@@ -43,10 +87,8 @@ public class EmployeesController : MonoBehaviour
         }
 
         float xOffset = employees.Count * spawnXOffset;
-        Vector3 position = new Vector3(xOffset, 0f, 0f);
-
-        Employee newEmployee = Instantiate(employeePrefab, transform);
-        newEmployee.transform.localPosition = position;
+        Vector3 spawnPosition = spawnPos.position + new Vector3(xOffset, 0f, 0f);
+        Employee newEmployee = Instantiate(employeeData.employeePrefab, spawnPosition, Quaternion.identity, transform);
         newEmployee.EmployeeData = employeeData;
 
         employees.Add(newEmployee);

@@ -38,7 +38,7 @@ public class CoinsController : MonoBehaviour, ICoins
     [ContextMenu("AddCoins")]
     public void SetCoins()
     {
-        string LargeConstant = "10000";
+        string LargeConstant = "9999999999999999999999999999999999";
         ChangeCoins(double.Parse(LargeConstant));
     }
 }

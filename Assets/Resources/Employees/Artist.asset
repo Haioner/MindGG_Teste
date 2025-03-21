@@ -16,6 +16,7 @@ MonoBehaviour:
   EmployeeSprite: {fileID: 6645427384175290001, guid: 4dffe6eab57ca4e4ba2f967307bd1c29, type: 3}
   StartEmployeeValue: 10
   StartTaskTime: 5
+  employeePrefab: {fileID: 6683390411767347529, guid: d7b92a530f158cf4fbf171385c145162, type: 3}
   PerLevel_ReduceTaskTime: 10
   MinTaskTime: 1
   ReduceTaskTimeRate: 0.05

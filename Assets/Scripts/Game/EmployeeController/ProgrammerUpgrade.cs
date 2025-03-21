@@ -4,6 +4,7 @@ public class ProgrammerUpgrade : EmployeeUpgrade
 {
     public override void OnPurchase(int itemLevel, bool isPurchased)
     {
+        base.OnPurchase(itemLevel, isPurchased);
         LevelUp_Employees(itemLevel);
         LevelUp_Programmer(itemLevel);
     }
@@ -12,7 +13,7 @@ public class ProgrammerUpgrade : EmployeeUpgrade
     {
         if (employeesController.EmployeeSO is ProgrammerSO programmerSO)
         {
-            int currentLevel = shopItem.GetCurrentLevel();
+            int currentLevel = _shopItem.GetCurrentLevel();
             int previousLevel = currentLevel - addLevel;
             int bugFixIncreases = 0;
 

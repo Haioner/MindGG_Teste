@@ -7,9 +7,13 @@ public class AvailableMarker : MonoBehaviour
     [SerializeField] private ShopItem shopItem;
     private ShopManager _shopManager;
 
-    private void Start()
+    private void Awake()
     {
         _shopManager = FindFirstObjectByType<ShopManager>();
+    }
+
+    private void Start()
+    {
         _shopManager.iCoins.OnAddCoin += UpdateMarker;
         shopItem.OnPurchaseItem += UpdateMarker;
         UpdateMarker(_shopManager.iCoins.GetCoins());

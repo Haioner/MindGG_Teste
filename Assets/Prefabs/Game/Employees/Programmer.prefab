@@ -48,6 +48,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3469177020869136980, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.25992346
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469177020869136980, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.42650983
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469177020869136980, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5566038
+      objectReference: {fileID: 0}
     - target: {fileID: 8598560417284715958, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
       propertyPath: m_Name
       value: Programmer
@@ -89,8 +101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6621c392b7071b14e8679d101365bbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  employeeData: {fileID: 11400000, guid: ef9621f22416db641bff08e39eda70fe, type: 2}
+  EmployeeData: {fileID: 0}
   timeMultiplier: 1
+  floatNumberColor: {r: 0.5471698, g: 0.3526917, b: 0.22454612, a: 1}
+  floatNumberRadius: 0.1
+  floatNumberPreffix: 'Programming: '
   OnStartTaskEvent:
     m_PersistentCalls:
       m_Calls:
@@ -121,6 +136,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  bugFixes: 1
-  chanceToFixBug: 0.1
-  bugFixRate: 1
