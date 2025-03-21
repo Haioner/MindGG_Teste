@@ -4,23 +4,47 @@ using UnityEngine;
 
 public class Employee : MonoBehaviour
 {
+    [HideInInspector] public EmployeeSO EmployeeData;
+
     [Header("Task")]
-    [SerializeField] protected float taskTime = 5f;
     [SerializeField] protected float timeMultiplier = 1f;
     protected float _currentTime = 0f;
 
+    protected float _currentTaskTime;
+    public float CurrentTaskTime
+    {
+        get => _currentTaskTime;
+        set => _currentTaskTime = value;
+    }
+
     [Space][SerializeField] protected UnityEvent OnStartTaskEvent;
     [Space][SerializeField] protected UnityEvent OnCompleteTaskEvent;
-
-    [Header("Employee Value")]
-    [SerializeField] protected float employeeValue = 10f;
-
     public event System.Action<float, float> OnTaskTimeChanged;
     private Coroutine _taskCoroutine;
+
+    protected float _employeeValue;
+    public float EmployeeValue
+    {
+        get => _employeeValue;
+        set => _employeeValue = value;
+    }
+
+    protected EmployeesController employeesController;
+
+    public virtual void Start()
+    {
+        employeesController = GetComponentInParent<EmployeesController>();
+    }
 
     private void OnMouseDown()
     {
         StartTask();
+        employeesController.StartEmployeesTask();
+    }
+
+    public void ReduceTaskTime(float timeReduction)
+    {
+        _currentTaskTime = Mathf.Max(_currentTaskTime - timeReduction, EmployeeData.MinTaskTime);
     }
 
     public virtual void StartTask()
@@ -36,9 +60,9 @@ public class Employee : MonoBehaviour
 
     private IEnumerator CalculateTaskTimer()
     {
-        OnTaskTimeChanged?.Invoke(taskTime, timeMultiplier);
+        OnTaskTimeChanged?.Invoke(_currentTaskTime, timeMultiplier);
         _currentTime = 0f;
-        while (_currentTime < taskTime)
+        while (_currentTime < _currentTaskTime)
         {
             _currentTime += Time.deltaTime * timeMultiplier;
             yield return null;

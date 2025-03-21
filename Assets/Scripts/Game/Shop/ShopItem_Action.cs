@@ -4,7 +4,7 @@ public abstract class ShopItem_Action : MonoBehaviour
 {
     protected ShopItem shopItem;
 
-    private void Awake()
+    public virtual void Awake()
     {
         shopItem = GetComponent<ShopItem>();
     }
@@ -19,5 +19,5 @@ public abstract class ShopItem_Action : MonoBehaviour
         shopItem.OnPurchaseItem -= OnPurchase;
     }
 
-    public virtual void OnPurchase(int itemLevel, bool isPurchased) { }
+    public virtual void OnPurchase(int addLevel, bool isPurchased) { }
 }

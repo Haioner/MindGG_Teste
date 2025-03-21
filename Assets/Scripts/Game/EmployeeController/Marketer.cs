@@ -1,17 +1,16 @@
-using UnityEngine;
-
 public class Marketer : Employee
 {
     private GameMakerController _gameMakerController;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         _gameMakerController = GameMakerController.instance;
     }
 
     public override void FinishTask()
     {
         base.FinishTask();
-        _gameMakerController.GetGameStatistics().MarketingValue += employeeValue;
+        _gameMakerController.GetGameStatistics().MarketingValue += _employeeValue;
     }
 }

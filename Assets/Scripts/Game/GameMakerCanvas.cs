@@ -53,10 +53,10 @@ public class GameMakerCanvas : MonoBehaviour
 
     private string GetStatisticsText()
     {
-        return $"Programming: {_gameMakerController.GetGameStatistics().ProgrammingValue}\n" +
-               $"Art: {_gameMakerController.GetGameStatistics().ArtValue}\n" +
-               $"Sound: {_gameMakerController.GetGameStatistics().SoundValue}\n" +
-               $"Marketing: {_gameMakerController.GetGameStatistics().MarketingValue}\n" +
-               $"Bugs: {_gameMakerController.GetGameStatistics().BugsValue}";
+        return $"Programming: {NumberConverter.ConvertNumberToString(_gameMakerController.GetGameStatistics().ProgrammingValue.ToString())}\n" +
+               $"Art: {NumberConverter.ConvertNumberToString(_gameMakerController.GetGameStatistics().ArtValue.ToString())}\n" +
+               $"Sound: {NumberConverter.ConvertNumberToString(_gameMakerController.GetGameStatistics().SoundValue.ToString())}\n" +
+               $"Marketing: {NumberConverter.ConvertNumberToString(_gameMakerController.GetGameStatistics().MarketingValue.ToString())}\n" +
+               $"Bugs: {NumberConverter.ConvertNumberToString(_gameMakerController.GetGameStatistics().BugsValue.ToString())}";
     }
 }

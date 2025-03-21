@@ -13,6 +13,7 @@ public class CoinsController : MonoBehaviour, ICoins
     private void Start()
     {
         InitCoins();
+        SetCoins();
     }
 
     private void InitCoins()

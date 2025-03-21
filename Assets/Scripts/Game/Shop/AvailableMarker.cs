@@ -12,16 +12,25 @@ public class AvailableMarker : MonoBehaviour
     {
         _shopManager = FindFirstObjectByType<ShopManager>();
         _shopManager.iCoins.OnAddCoin += UpdateMarker;
+        shopItem.OnPurchaseItem += UpdateMarker;
         UpdateMarker(_shopManager.iCoins.GetCoins());
     }
 
     private void OnDisable()
     {
         _shopManager.iCoins.OnAddCoin -= UpdateMarker;
+        shopItem.OnPurchaseItem -= UpdateMarker;
+    }
+
+    private void UpdateMarker(int addLevel, bool isPurchased)
+    {
+        UpdateMarker(_shopManager.iCoins.GetCoins());
     }
 
     private void UpdateMarker(BigInteger coins)
     {
-        availableMarkerImage.enabled = coins >= shopItem.GetMinimalPrice(1);
+        bool isBelowMaxLevel = shopItem.GetCurrentLevel() < shopItem.GetMaxLevel();
+        bool hasEnoughCoins = coins >= shopItem.GetMinimalPrice(1);
+        availableMarkerImage.enabled = isBelowMaxLevel && hasEnoughCoins;
     }
 }

@@ -3,16 +3,19 @@ using UnityEngine;
 
 public class Programmer : Employee
 {
-    [Header("Bugs")]
-    [SerializeField] private int bugFixes = 1;
-    [SerializeField] private float chanceToFixBug = 0.5f;
-    [SerializeField] private float bugFixRate = 1f;
-
     private GameMakerController _gameMakerController;
     private Coroutine _fixBugCoroutine;
 
-    private void Start()
+    private float _currentBugFixChance;
+    public float CurrentBugFixChance
     {
+        get => _currentBugFixChance;
+        set => _currentBugFixChance = value;
+    }
+
+    public override void Start()
+    {
+        base.Start();
         _gameMakerController = GameMakerController.instance;
     }
 
@@ -31,7 +34,7 @@ public class Programmer : Employee
     public override void FinishTask()
     {
         base.FinishTask();
-        _gameMakerController.GetGameStatistics().ProgrammingValue += employeeValue;
+        _gameMakerController.GetGameStatistics().ProgrammingValue += _employeeValue;
     }
 
     #region Fix Bugs
@@ -54,14 +57,21 @@ public class Programmer : Employee
 
     private IEnumerator FixBugsOverTime()
     {
-        while (true)
+        if (EmployeeData is ProgrammerSO programmerSO)
         {
-            float randFix = Random.value;
-            if (_gameMakerController.GetGameStatistics().BugsValue > 0 && randFix <= chanceToFixBug)
+            while (true)
             {
-                _gameMakerController.GetGameStatistics().BugsValue -= bugFixes;
+                float randFix = Random.value;
+                if (_gameMakerController.GetGameStatistics().BugsValue > 0 && randFix <= _currentBugFixChance)
+                {
+                    _gameMakerController.GetGameStatistics().BugsValue -= programmerSO.BugFixes;
+                }
+                yield return new WaitForSeconds(programmerSO.BugFixRate);
             }
-            yield return new WaitForSeconds(bugFixRate);
+        }
+        else
+        {
+            Debug.LogError("EmployeeData is not of type ProgrammerSO!");
         }
     }
     #endregion

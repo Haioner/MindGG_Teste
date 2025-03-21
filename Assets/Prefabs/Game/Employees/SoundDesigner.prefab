@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ce49ba85dabbf4fbf876a5a79e1c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskTime: 5
+  employeeData: {fileID: 11400000, guid: ef9621f22416db641bff08e39eda70fe, type: 2}
   timeMultiplier: 1
   OnStartTaskEvent:
     m_PersistentCalls:
@@ -130,7 +130,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  soundDesignerValue: 10
 --- !u!114 &7126837952238053379 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2491404634486860523, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}

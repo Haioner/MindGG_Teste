@@ -27,11 +27,11 @@ public class NumberConverter
                               "Mm", "Nn", "Oo", "Pp", "Qq", "Rr", "Ss", "Tt", "Uu", "Vv", "Ww", "Xx", "Yy", "Zz" };
 
         int suffixIndex = 0;
-        BigInteger convertedNumber = BigInteger.Parse(numberString);
+        double convertedNumber = double.Parse(numberString);
 
-        while (convertedNumber >= 1000 && suffixIndex < suffixes.Length - 1)
+        while (convertedNumber >= 1000.0 && suffixIndex < suffixes.Length - 1)
         {
-            convertedNumber /= 1000;
+            convertedNumber /= 1000.0;
             suffixIndex++;
         }
 

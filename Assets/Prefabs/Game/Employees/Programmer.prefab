@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6621c392b7071b14e8679d101365bbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskTime: 5
+  employeeData: {fileID: 11400000, guid: ef9621f22416db641bff08e39eda70fe, type: 2}
   timeMultiplier: 1
   OnStartTaskEvent:
     m_PersistentCalls:
@@ -121,7 +121,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  programmerValue: 10
   bugFixes: 1
   chanceToFixBug: 0.1
   bugFixRate: 1

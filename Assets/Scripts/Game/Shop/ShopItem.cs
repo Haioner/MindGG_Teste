@@ -2,6 +2,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using System.Numerics;
+using System.Collections.Generic;
 
 public class ShopItem : MonoBehaviour
 {
@@ -21,12 +22,13 @@ public class ShopItem : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI priceText;
-    [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private List<TextMeshProUGUI> levelText;
     [SerializeField] private TextMeshProUGUI levelUpText;
 
     private ShopManager _shopManager;
 
     public event System.Action<int, bool> OnPurchaseItem;
+    public event System.Action<int> OnChangeLevelAdd;
 
     private void Awake()
     {
@@ -40,6 +42,9 @@ public class ShopItem : MonoBehaviour
     }
 
     public string GetItemID() => itemID;
+    public int GetCurrentLevel() => itemLevel;
+    public int GetMaxLevel() => maxLevel;
+    public int GetLevelAdd() => levelAdd;
 
     public void UpdateItem()
     {
@@ -53,11 +58,12 @@ public class ShopItem : MonoBehaviour
     {
         if(GetPrice() <= _shopManager.iCoins.GetCoins() && itemLevel < maxLevel && !isPurchased)
         {
+            int previousLevel = itemLevel;
             _shopManager.iCoins.ChangeCoins(-GetPrice());
             Unlock();
             LevelUp();
             UpdateItem();
-            OnPurchaseItem?.Invoke(itemLevel, isPurchased);
+            OnPurchaseItem?.Invoke(itemLevel - previousLevel, isPurchased);
         }
     }
 
@@ -87,6 +93,7 @@ public class ShopItem : MonoBehaviour
         if (itemLevel == -1 || itemLevel >= maxLevel) return;
         levelAdd = value;
         UpdateItem();
+        OnChangeLevelAdd?.Invoke(levelAdd);
     }
 
     public void SetMaxLevelUpgrade()
@@ -94,6 +101,7 @@ public class ShopItem : MonoBehaviour
         if (itemLevel == -1 || itemLevel >= maxLevel) return;
         levelAdd = maxLevel - itemLevel;
         UpdateItem();
+        OnChangeLevelAdd?.Invoke(levelAdd);
     }
 
     public BigInteger GetMinimalPrice(int level)
@@ -125,8 +133,14 @@ public class ShopItem : MonoBehaviour
     }
     #endregion
 
-    private void SetPriceText() => priceText.text = NumberConverter.ConvertNumberToString(GetPrice().ToString(), false);
-    private void SetLevelText() => levelText.text = "Lvl " + NumberConverter.ConvertNumberToString(itemLevel.ToString(), false);
+    private void SetPriceText() => priceText.text = NumberConverter.ConvertNumberToString(GetPrice().ToString(), true);
+    private void SetLevelText()
+    {
+        foreach (var text in levelText)
+        {
+            text.text = "Lvl " + NumberConverter.ConvertNumberToString(itemLevel.ToString(), false);
+        }
+    }
     private void SetLevelUpText() { if(levelUpText != null) levelUpText.text = "Lvl Up x" + NumberConverter.ConvertNumberToString(levelAdd.ToString(), false); }
-    public void UpdateUnlocked() { if(itemLevel == -1) levelText.text = isPurchased ? "Purchased" : "Locked"; }
+    public void UpdateUnlocked() { if(itemLevel == -1) levelText[0].text = isPurchased ? "Purchased" : "Locked"; }
 }
