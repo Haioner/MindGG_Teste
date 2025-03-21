@@ -1987,7 +1987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsController: {fileID: 748160424}
-  PriceMultiplier: 2.1
+  PriceMultiplier: 2.5
 --- !u!1 &1087381157
 GameObject:
   m_ObjectHideFlags: 0

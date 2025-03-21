@@ -1,3 +1,5 @@
+using UnityEngine;
+
 [System.Serializable]
 public class GameStatistics
 {
@@ -62,7 +64,9 @@ public class GameStatistics
 
     public float GetAvarageValue()
     {
-        return (ProgrammingValue + ArtValue + SoundValue + MarketingValue) / 5;
+        float totalStats = ProgrammingValue + ArtValue + SoundValue + MarketingValue;
+        float penalty = BugsValue * 0.1f;
+        return Mathf.Max(0, (totalStats - penalty) / 4);
     }
 
     public void ResetWhitoutEvent()
