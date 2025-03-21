@@ -1,8 +1,6 @@
-using System.Numerics;
-
 public interface ICoins
 {
-    public BigInteger GetCoins();
-    public void ChangeCoins(BigInteger amount);
-    public event System.Action<BigInteger> OnAddCoin;
+    public double GetCoins();
+    public void ChangeCoins(double amount);
+    public event System.Action<double> OnAddCoin;
 }

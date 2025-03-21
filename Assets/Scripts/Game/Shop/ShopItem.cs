@@ -1,8 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using System.Numerics;
-using System.Collections.Generic;
 
 public class ShopItem : MonoBehaviour
 {
@@ -26,6 +25,8 @@ public class ShopItem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelUpText;
 
     private ShopManager _shopManager;
+    private bool _isMaxSelected;
+    private Coroutine _maxLevelUpgradeCoroutine;
 
     public event System.Action<int, bool> OnPurchaseItem;
     public event System.Action<int> OnChangeLevelAdd;
@@ -39,6 +40,16 @@ public class ShopItem : MonoBehaviour
 
         upgradeButton.onClick.AddListener(OnClick);
         UpdateItem();
+    }
+
+    private void Start()
+    {
+        _shopManager.iCoins.OnAddCoin += SetMaxLevelUpgrade_CALLBACK;
+    }
+
+    private void OnDisable()
+    {
+        _shopManager.iCoins.OnAddCoin -= SetMaxLevelUpgrade_CALLBACK;
     }
 
     public string GetItemID() => itemID;
@@ -94,24 +105,59 @@ public class ShopItem : MonoBehaviour
         levelAdd = value;
         UpdateItem();
         OnChangeLevelAdd?.Invoke(levelAdd);
+        SetMaxSelected(false);
+    }
+
+    public void SetMaxSelected(bool state) { _isMaxSelected = state; }
+
+    public void SetMaxLevelUpgrade_CALLBACK(double coins)
+    {
+        if (_isMaxSelected)
+        {
+            if (_maxLevelUpgradeCoroutine != null)
+                StopCoroutine(_maxLevelUpgradeCoroutine);
+
+            _maxLevelUpgradeCoroutine = StartCoroutine(DelayedSetMaxLevelUpgrade());
+        }
+    }
+
+    private System.Collections.IEnumerator DelayedSetMaxLevelUpgrade()
+    {
+        yield return new WaitForSeconds(0.1f);
+        SetMaxLevelUpgrade();
     }
 
     public void SetMaxLevelUpgrade()
     {
         if (itemLevel == -1 || itemLevel >= maxLevel) return;
-        levelAdd = maxLevel - itemLevel;
+
+        int affordableLevels = 0;
+        double cumulativePrice = 0;
+        double playerCoins = _shopManager.iCoins.GetCoins();
+
+        for (int i = itemLevel; i < maxLevel; i++)
+        {
+            double nextLevelPrice = GetMinimalPrice(i);
+            if (cumulativePrice + nextLevelPrice > playerCoins)
+                break;
+
+            cumulativePrice += nextLevelPrice;
+            affordableLevels++;
+        }
+
+        levelAdd = affordableLevels;
         UpdateItem();
         OnChangeLevelAdd?.Invoke(levelAdd);
     }
 
-    public BigInteger GetMinimalPrice(int level)
+    public double GetMinimalPrice(int level)
     {
-        return (BigInteger)Mathf.Floor(initialPrice * _shopManager.PriceMultiplier *  level);
+        return (double)Mathf.Floor(initialPrice * _shopManager.PriceMultiplier *  level);
     }
 
-    private BigInteger GetCumulativePrice(int startLevel, int endLevel)
+    private double GetCumulativePrice(int startLevel, int endLevel)
     {
-        BigInteger cumulativePrice = 0;
+        double cumulativePrice = 0;
         for (int i = startLevel; i < endLevel; i++)
         {
             cumulativePrice += GetMinimalPrice(i);
@@ -119,7 +165,7 @@ public class ShopItem : MonoBehaviour
         return cumulativePrice;
     }
 
-    private BigInteger GetPrice()
+    private double GetPrice()
     {
         if (itemLevel == -1 || itemLevel >= maxLevel) return 0;
 

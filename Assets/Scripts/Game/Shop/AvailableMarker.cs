@@ -1,4 +1,3 @@
-using System.Numerics;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -27,7 +26,7 @@ public class AvailableMarker : MonoBehaviour
         UpdateMarker(_shopManager.iCoins.GetCoins());
     }
 
-    private void UpdateMarker(BigInteger coins)
+    private void UpdateMarker(double coins)
     {
         bool isBelowMaxLevel = shopItem.GetCurrentLevel() < shopItem.GetMaxLevel();
         bool hasEnoughCoins = coins >= shopItem.GetMinimalPrice(1);

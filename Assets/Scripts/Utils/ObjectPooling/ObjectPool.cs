@@ -4,6 +4,7 @@ using System.Linq;
 
 public class ObjectPool : MonoBehaviour
 {
+    [SerializeField] private GameObject contentParent;
     [SerializeField] private GameObject prefab;
     [SerializeField] private int poolSize = 10;
 
@@ -32,7 +33,13 @@ public class ObjectPool : MonoBehaviour
     #endregion
 
     #region Private Methods
-    private void CreateParent() => poolParent = new GameObject { name = gameObject.name + "_Parent" };
+    private void CreateParent()
+    {
+        if (contentParent == null)
+            poolParent = new GameObject { name = gameObject.name + "_Parent" };
+        else
+            poolParent = contentParent;
+    }
     private void CreatePool() => Enumerable.Range(0, poolSize).ToList().ForEach(_ => CreateObject());
 
     private GameObject CreateObject()
