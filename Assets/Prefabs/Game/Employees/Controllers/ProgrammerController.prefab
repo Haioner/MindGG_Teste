@@ -112,6 +112,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e64c9258a68cad4f8e388667b86388f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnPurchaseEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8622984179826997887}
+        m_TargetAssemblyTypeName: DG.Tweening.DOTweenAnimation, DOTweenPro.Scripts
+        m_MethodName: DORestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6799130347668293183 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8545972108664599139, guid: 2dbff99dc0f130046b84dbe5201178fc, type: 3}
@@ -132,6 +147,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8622984179826997887 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6874963845948313123, guid: 2dbff99dc0f130046b84dbe5201178fc, type: 3}
+  m_PrefabInstance: {fileID: 2936972981127197788}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0390bd8b8ffd640b34fe25065ff1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &8903604932300467341 stripped

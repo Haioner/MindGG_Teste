@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine;
 
 public class UnlockItemAction : ShopItem_Action
 {
@@ -14,12 +14,11 @@ public class UnlockItemAction : ShopItem_Action
 
     [Header("Event")]
     [SerializeField] private UnityEvent onPurchaseEvent;
+    [SerializeField] private UnityEvent onSellEvent;
 
     public override void OnPurchase(int addLevel, bool isPurchased)
     {
         base.OnPurchase(addLevel, isPurchased);
-
-        onPurchaseEvent?.Invoke();
 
         foreach (var obj in objectsToInstantiate)
         {
@@ -34,5 +33,19 @@ public class UnlockItemAction : ShopItem_Action
 
         foreach (var obj in objectsToDeactive)
             obj.SetActive(false);
+
+        onPurchaseEvent?.Invoke();
+    }
+
+    public void Sell()
+    {
+        foreach (var obj in objectsToDeactive)
+            obj.SetActive(true);
+
+        foreach (var obj in objectsToActive)
+            obj.SetActive(false);
+
+        _shopItem.isPurchased = false;
+        onSellEvent?.Invoke();
     }
 }

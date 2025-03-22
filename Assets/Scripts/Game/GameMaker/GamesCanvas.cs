@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GamesCanvas : MonoBehaviour
@@ -6,7 +7,7 @@ public class GamesCanvas : MonoBehaviour
     [SerializeField] private ObjectPool objectPool;
     [SerializeField] private Transform contentParent;
     [SerializeField] private List<Sprite> gameImages;
-
+    [SerializeField] private TextMeshProUGUI emptyText;
     private Dictionary<PublishedGame, GameObject> gameItems = new Dictionary<PublishedGame, GameObject>();
 
     private void OnEnable()
@@ -25,6 +26,7 @@ public class GamesCanvas : MonoBehaviour
 
     private void AddGameItem(PublishedGame game)
     {
+        emptyText.enabled = false;
         GameObject newItem = objectPool.GetObject_SetPosAndRot(contentParent.position, Quaternion.identity);
 
         GameItem item = newItem.GetComponent<GameItem>();
@@ -39,6 +41,8 @@ public class GamesCanvas : MonoBehaviour
     {
         if (gameItems.TryGetValue(game, out GameObject item))
         {
+            emptyText.enabled = true;
+
             objectPool.DisableObject(item);
             gameItems.Remove(game);
         }

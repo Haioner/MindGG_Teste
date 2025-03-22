@@ -13,7 +13,7 @@ public class Programmer : Employee
         set => _currentBugFixChance = value;
     }
 
-    private int _currentBugFix;
+    private int _currentBugFix = 1;
     public int CurrentBugFix
     {
         get => _currentBugFix;
@@ -72,7 +72,8 @@ public class Programmer : Employee
                 if (_gameMakerController.GetGameStatistics().BugsValue > 0 && randFix <= _currentBugFixChance)
                 {
                     _gameMakerController.GetGameStatistics().BugsValue -= _currentBugFix;
-                    CreateBugFixFloatNumber();
+                    if (_currentBugFix > 0)
+                        CreateBugFixFloatNumber();
                 }
                 yield return new WaitForSeconds(programmerSO.BugFixRate);
             }
@@ -86,9 +87,9 @@ public class Programmer : Employee
     private void CreateBugFixFloatNumber()
     {
         Vector2 randomOffset = Random.insideUnitCircle * floatNumberRadius;
-        Vector3 spawnPosition = transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
+        Vector3 spawnPosition = transform.position + new Vector3(randomOffset.x, randomOffset.y + 0.4f, 0);
         GameObject floatNumber = floatNumberObjectPool.GetObject_SetPosAndRot(spawnPosition, Quaternion.identity);
-        floatNumber.GetComponent<FloatNumber>().InitFloatNumber($"BugFixed: {_currentBugFix}", floatNumberObjectPool, floatNumberColor);
+        floatNumber.GetComponent<FloatNumber>().InitFloatNumber($"<color=#e6482e><sprite=4>{_currentBugFix}</color>", floatNumberObjectPool, floatNumberColor);
     }
     #endregion
 }

@@ -6,7 +6,9 @@ using TMPro;
 public class ManagerEmployeeController : MonoBehaviour
 {
     [Header("Time")]
-    [SerializeField] private float timeWorking = 10f;
+    [SerializeField] private ManagerRaritySO managerRaritySO;
+    private Rarity currentRarity;
+    private float workTime;
 
     [Header("UI")]
     [SerializeField] private Button startButton;
@@ -18,6 +20,8 @@ public class ManagerEmployeeController : MonoBehaviour
 
     private float _currentTimeWorking;
     private Coroutine _timerCoroutine;
+
+    public event System.Action<Rarity, float> OnSelectRarity;
 
     private void Awake()
     {
@@ -46,12 +50,33 @@ public class ManagerEmployeeController : MonoBehaviour
     {
         if (_currentTimeWorking <= 0)
         {
-            _currentTimeWorking = timeWorking;
+            _currentTimeWorking = workTime;
             AutomaticTaskStart();
             startButton.interactable = false;
             if (_timerCoroutine == null)
                 _timerCoroutine = StartCoroutine(DecreaseTimeWorking());
         }
+    }
+
+    public void SelectRarity()
+    {
+        int randRarirty = Random.Range(0, managerRaritySO.RarityList.Count);
+        currentRarity = managerRaritySO.RarityList[randRarirty];
+
+        float randTime = Random.Range(currentRarity.timePitch.x, currentRarity.timePitch.y);
+        workTime = randTime;
+
+        OnSelectRarity?.Invoke(currentRarity, workTime);
+    }
+
+    public Rarity GetCurrentRarity() => currentRarity;
+
+    public void ResetManager()
+    {
+        timeText.text = $"";
+        startButton.interactable = true;
+        _currentTimeWorking = 0;
+        _timerCoroutine = null;
     }
 
     private IEnumerator DecreaseTimeWorking()
@@ -63,9 +88,6 @@ public class ManagerEmployeeController : MonoBehaviour
             yield return null;
         }
 
-        timeText.text = $"";
-        startButton.interactable = true;
-        _currentTimeWorking = 0;
-        _timerCoroutine = null;
+        ResetManager();
     }
 }

@@ -5,7 +5,6 @@ public class GameMakerController : MonoBehaviour, IManagerTask
 {
     public static GameMakerController instance;
 
-    [SerializeField] private float progressSpeedMultiplier = 1f;
     [SerializeField] private GameStatistics gameStatistics;
 
     [Header("Bugs")]
@@ -90,7 +89,7 @@ public class GameMakerController : MonoBehaviour, IManagerTask
     {
         while (_currentGameProgress < 100)
         {
-            _currentGameProgress += Time.deltaTime * progressSpeedMultiplier;
+            _currentGameProgress += Time.deltaTime * PlayerManager.instance.GameProgressSpeedMultiplier;
             OnGameProgressChanged?.Invoke(_currentGameProgress);
             yield return null;
         }

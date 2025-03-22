@@ -191,7 +191,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3474482517870320084}
     - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
+      propertyPath: objectsToInstantiate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
+      propertyPath: objectsToInstantiate.Array.data[0]
+      value: 
+      objectReference: {fileID: 1437989564580333897, guid: d75b8a362b977cd4d845a7e79e80426c, type: 3}
+    - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
+      propertyPath: OnPurchaseEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
       propertyPath: onPurchaseEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
+      propertyPath: OnPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
@@ -199,23 +215,67 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
+      propertyPath: onPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
+      propertyPath: OnPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3030411019374937156}
+    - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
       propertyPath: onPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 9216607561313394145}
     - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
+      propertyPath: onPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 3030411019374937156}
+    - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
+      propertyPath: OnPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
       propertyPath: onPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
+      propertyPath: onPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
+      propertyPath: OnPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DORestart
       objectReference: {fileID: 0}
     - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
       propertyPath: onPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CreateFirstEmployee
       objectReference: {fileID: 0}
     - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
+      propertyPath: onPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: DORestart
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
+      propertyPath: OnPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DG.Tweening.DOTweenAnimation, DOTweenPro.Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
       propertyPath: onPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: EmployeesController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
+      propertyPath: onPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: DG.Tweening.DOTweenAnimation, DOTweenPro.Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
+      propertyPath: OnPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
       propertyPath: onPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846652449377140728, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
+      propertyPath: onPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5892010295709705046, guid: 7acc34ef2eea18a41a4d5a2589c5760e, type: 3}
@@ -455,6 +515,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6002679135115073745, guid: 2dbff99dc0f130046b84dbe5201178fc, type: 3}
   m_PrefabInstance: {fileID: 8459706190486751847}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3030411019374937156 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6874963845948313123, guid: 2dbff99dc0f130046b84dbe5201178fc, type: 3}
+  m_PrefabInstance: {fileID: 8459706190486751847}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0390bd8b8ffd640b34fe25065ff1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7441930681144286761 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1306577653033948238, guid: 2dbff99dc0f130046b84dbe5201178fc, type: 3}

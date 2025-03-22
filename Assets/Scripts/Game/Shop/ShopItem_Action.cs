@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class ShopItem_Action : MonoBehaviour
 {
     protected ShopItem _shopItem;
     private ObjectPool _floatNumberObjectPool;
+    [SerializeField] protected UnityEvent OnPurchaseEvent;
 
     public virtual void Awake()
     {
@@ -23,7 +25,7 @@ public abstract class ShopItem_Action : MonoBehaviour
         _shopItem.OnFailBuy += FailBuy_FloatNumber;
     }
 
-    public virtual void OnPurchase(int addLevel, bool isPurchased) { }
+    public virtual void OnPurchase(int addLevel, bool isPurchased) { OnPurchaseEvent?.Invoke(); }
 
     public virtual void FailBuy_FloatNumber(string message)
     {

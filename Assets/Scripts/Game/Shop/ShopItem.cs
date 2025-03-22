@@ -188,15 +188,15 @@ public class ShopItem : MonoBehaviour
     }
     #endregion
 
-    private void SetPriceText() => priceText.text = NumberConverter.ConvertNumberToString(GetPrice().ToString(), true);
+    private void SetPriceText() => priceText.text = "<sprite=0>" + NumberConverter.ConvertNumberToString(GetPrice().ToString(), true);
     private void SetLevelText()
     {
         if(levelText.Count <= 0) return;
         foreach (var text in levelText)
         {
-            text.text = "Lvl " + NumberConverter.ConvertNumberToString(itemLevel.ToString(), false);
+            text.text = "Lvl " + NumberConverter.ConvertNumberToString(itemLevel.ToString());
         }
     }
-    private void SetLevelUpText() { if(levelUpText != null) levelUpText.text = "Lvl Up x" + NumberConverter.ConvertNumberToString(levelAdd.ToString(), false); }
+    private void SetLevelUpText() { if(levelUpText != null) levelUpText.text = "Lvl Up x" + NumberConverter.ConvertNumberToString(levelAdd.ToString()); }
     public void UpdateUnlocked() { if(itemLevel == -1 && levelText.Count > 0) levelText[0].text = isPurchased ? "Purchased" : "Locked"; }
 }

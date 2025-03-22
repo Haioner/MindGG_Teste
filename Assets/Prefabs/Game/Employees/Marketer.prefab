@@ -92,9 +92,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EmployeeData: {fileID: 0}
   timeMultiplier: 1
-  floatNumberColor: {r: 0, g: 0.90196085, b: 0.18039216, a: 1}
+  floatNumberColor: {r: 0.9568628, g: 0.49411768, b: 0.10588236, a: 1}
   floatNumberRadius: 0.1
-  floatNumberPreffix: 'Marketing: '
+  floatNumberPreffix: <sprite=3>
   OnStartTaskEvent:
     m_PersistentCalls:
       m_Calls:

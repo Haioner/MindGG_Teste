@@ -1,7 +1,7 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine;
+using TMPro;
 
 public class ManagerEmployeeCanvas : MonoBehaviour
 {
@@ -9,10 +9,12 @@ public class ManagerEmployeeCanvas : MonoBehaviour
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI rarityText;
 
     [Header("CACHE")]
     [SerializeField] private ShopItem shopItem;
     [SerializeField] private List<Image> managerIcons = new List<Image>();
+    private ManagerEmployeeController employeeController;
 
     [System.Serializable]
     public class NameData
@@ -30,7 +32,6 @@ public class ManagerEmployeeCanvas : MonoBehaviour
         {
             nameData = JsonUtility.FromJson<NameData>(jsonFile.text);
 
-            // Verifica se os dados foram carregados corretamente
             if (nameData == null || nameData.name == null || nameData.lastName == null)
             {
                 Debug.LogError("Failed to load name data or invalid JSON structure.");
@@ -44,16 +45,19 @@ public class ManagerEmployeeCanvas : MonoBehaviour
 
     private void OnEnable()
     {
-        shopItem.OnPurchaseItem += UpdateUI;
+        employeeController = GetComponentInParent<ManagerEmployeeController>();
+        employeeController.OnSelectRarity += UpdateUI;
     }
 
     private void OnDisable()
     {
-        shopItem.OnPurchaseItem -= UpdateUI;
+        employeeController.OnSelectRarity -= UpdateUI;
     }
 
-    private void UpdateUI(int level, bool isPurchased)
+    private void UpdateUI(Rarity rarity, float workTime)
     {
+        rarityText.text = $"{rarity.raritys.ToString()} {NumberConverter.GetTimePassed(workTime)}";
+
         if (managerIcons.Count > 0)
         {
             icon.enabled = true;
@@ -61,7 +65,7 @@ public class ManagerEmployeeCanvas : MonoBehaviour
             icon.sprite = managerIcons[randIcon].sprite;
         }
 
-        if (isPurchased && nameData != null && nameData.name.Count > 0 && nameData.lastName.Count > 0)
+        if (nameData != null && nameData.name.Count > 0 && nameData.lastName.Count > 0)
         {
             string randomName = nameData.name[Random.Range(0, nameData.name.Count)];
             string randomSurname = nameData.lastName[Random.Range(0, nameData.lastName.Count)];

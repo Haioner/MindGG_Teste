@@ -84,9 +84,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EmployeeData: {fileID: 0}
   timeMultiplier: 1
-  floatNumberColor: {r: 0.85098046, g: 0.25882354, b: 0, a: 1}
+  floatNumberColor: {r: 0.7137255, g: 0.8352942, b: 0.23529413, a: 1}
   floatNumberRadius: 0.1
-  floatNumberPreffix: 'Art: '
+  floatNumberPreffix: <sprite=1>
   OnStartTaskEvent:
     m_PersistentCalls:
       m_Calls:

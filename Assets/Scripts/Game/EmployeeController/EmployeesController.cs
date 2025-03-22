@@ -47,6 +47,7 @@ public class EmployeesController : MonoBehaviour, IManagerTask
 
     public void CreateFirstEmployee()
     {
+        if (startEmployeesCount > 0) return;
         AddNewEmployee();
         InitStaterEmployees();
     }

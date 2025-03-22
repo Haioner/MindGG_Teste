@@ -1,6 +1,10 @@
+using UnityEngine.Events;
+using UnityEngine;
+
 public class EmployeeUpgrade : ShopItem_Action
 {
     protected EmployeesController employeesController;
+    //[SerializeField] private UnityEvent OnPurchaseEvent;
 
     public override void Awake()
     {
@@ -12,6 +16,7 @@ public class EmployeeUpgrade : ShopItem_Action
     {
         base.OnPurchase(addLevel, isPurchased);
         LevelUp_Employees(addLevel);
+        OnPurchaseEvent?.Invoke();
     }
 
     public virtual void LevelUp_Employees(int addLevel)
