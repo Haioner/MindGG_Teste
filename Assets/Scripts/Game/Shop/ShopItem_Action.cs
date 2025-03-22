@@ -14,22 +14,22 @@ public abstract class ShopItem_Action : MonoBehaviour
     private void OnEnable()
     {
         _shopItem.OnPurchaseItem += OnPurchase;
-        _shopItem.OnFailBuy += NotEnough_FloatNumber;
+        _shopItem.OnFailBuy += FailBuy_FloatNumber;
     }
 
     private void OnDisable()
     {
         _shopItem.OnPurchaseItem -= OnPurchase;
-        _shopItem.OnFailBuy += NotEnough_FloatNumber;
+        _shopItem.OnFailBuy += FailBuy_FloatNumber;
     }
 
     public virtual void OnPurchase(int addLevel, bool isPurchased) { }
 
-    public virtual void NotEnough_FloatNumber()
+    public virtual void FailBuy_FloatNumber(string message)
     {
         Vector2 randomOffset = Random.insideUnitCircle * 0.2f;
         Vector3 spawnPosition = transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
         GameObject floatNumber = _floatNumberObjectPool.GetObject_SetPosAndRot(spawnPosition, Quaternion.identity);
-        floatNumber.GetComponent<FloatNumber>().InitFloatNumber("Not enough money!", _floatNumberObjectPool, Color.red);
+        floatNumber.GetComponent<FloatNumber>().InitFloatNumber(message, _floatNumberObjectPool, Color.red);
     }
 }

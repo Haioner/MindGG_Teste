@@ -28,7 +28,7 @@ public class ShopItem : MonoBehaviour
     private bool _isMaxSelected;
     private Coroutine _maxLevelUpgradeCoroutine;
 
-    public event System.Action OnFailBuy;
+    public event System.Action<string> OnFailBuy;
     public event System.Action<int, bool> OnPurchaseItem;
     public event System.Action<int> OnChangeLevelAdd;
 
@@ -69,10 +69,7 @@ public class ShopItem : MonoBehaviour
 
     private void OnClick()
     {
-        if (GetPrice() > _shopManager.iCoins.GetCoins())
-            OnFailBuy?.Invoke();
-
-        if (GetPrice() <= _shopManager.iCoins.GetCoins() && itemLevel < maxLevel && !isPurchased)
+        if (GetPrice() <= _shopManager.iCoins.GetCoins() && GetPrice() != 0 && itemLevel < maxLevel && !isPurchased)
         {
             int previousLevel = itemLevel;
             _shopManager.iCoins.ChangeCoins(-GetPrice());
@@ -80,7 +77,13 @@ public class ShopItem : MonoBehaviour
             LevelUp();
             UpdateItem();
             OnPurchaseItem?.Invoke(itemLevel - previousLevel, isPurchased);
+            return;
         }
+
+        if (GetPrice() > _shopManager.iCoins.GetCoins() || (GetPrice() == 0 && itemLevel < maxLevel))
+            OnFailBuy?.Invoke("Not enough money!");
+        else
+            OnFailBuy?.Invoke("Already on MAX!");
     }
 
     private void LevelUp()

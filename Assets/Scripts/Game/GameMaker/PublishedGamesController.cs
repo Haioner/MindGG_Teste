@@ -9,6 +9,13 @@ public class PublishedGame
     public float GameProfit;
 }
 
+[System.Serializable]
+public class GameNamesData
+{
+    public List<string> names;
+    public List<string> lastNames;
+}
+
 public class PublishedGamesController : MonoBehaviour
 {
     public static event System.Action<PublishedGame> OnGameCreated;
@@ -22,9 +29,15 @@ public class PublishedGamesController : MonoBehaviour
 
     private CoinsController _coinsController;
     private GameMakerController _gameMakerController;
+    private GameNamesData gameNamesData;
 
     private void Start()
     {
+        TextAsset jsonFile = Resources.Load<TextAsset>("gameNames");
+        if (jsonFile != null)
+            gameNamesData = JsonUtility.FromJson<GameNamesData>(jsonFile.text);
+        
+
         _coinsController = FindFirstObjectByType<CoinsController>();
         _gameMakerController = GameMakerController.instance;
         _gameMakerController.OnPublishGame += Publish;
@@ -43,7 +56,7 @@ public class PublishedGamesController : MonoBehaviour
         float normalizedProgress = Mathf.Clamp01(gameProgress / 100f);
         float gamePopularity = (averageStats + normalizedProgress) / 2f;
 
-        string randomGameName = NamesGenerator.GenerateRandomName();
+        string randomGameName = GenerateRandomGameName();
 
         PublishedGame newPublishedGame = new PublishedGame
         {
@@ -53,6 +66,20 @@ public class PublishedGamesController : MonoBehaviour
 
         publishedGames.Add(newPublishedGame);
         OnGameCreated?.Invoke(newPublishedGame);
+    }
+
+    private string GenerateRandomGameName()
+    {
+        if (gameNamesData == null || gameNamesData.names == null || gameNamesData.names.Count == 0)
+            return "Unknown Game";
+        
+        string name = gameNamesData.names[Random.Range(0, gameNamesData.names.Count)];
+        string lastName = "";
+
+        if (gameNamesData.lastNames != null && gameNamesData.lastNames.Count > 0)
+            lastName = Random.value > 0.5f ? " " + gameNamesData.lastNames[Random.Range(0, gameNamesData.lastNames.Count)] : "";
+
+        return name + lastName;
     }
 
     private void UpdatePublishedGames()

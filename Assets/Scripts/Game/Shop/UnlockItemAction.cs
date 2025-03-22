@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UnlockItemAction : ShopItem_Action
 {
@@ -11,9 +12,14 @@ public class UnlockItemAction : ShopItem_Action
     [SerializeField] private List<GameObject> objectsToDeactive = new List<GameObject>();
     [SerializeField] private List<GameObject> objectsToActive = new List<GameObject>();
 
+    [Header("Event")]
+    [SerializeField] private UnityEvent onPurchaseEvent;
+
     public override void OnPurchase(int addLevel, bool isPurchased)
     {
         base.OnPurchase(addLevel, isPurchased);
+
+        onPurchaseEvent?.Invoke();
 
         foreach (var obj in objectsToInstantiate)
         {

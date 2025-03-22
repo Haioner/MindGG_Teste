@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EmployeesController : MonoBehaviour
+public class EmployeesController : MonoBehaviour, IManagerTask
 {
     [Header("Employee Data")]
     [SerializeField] private EmployeeSO employeeData;
@@ -16,7 +16,10 @@ public class EmployeesController : MonoBehaviour
     [SerializeField] private bool startLocked = true;
     [SerializeField] private GameObject unlockObject, employeeUpgrade;
 
-    private void Awake()
+    public event System.Action OnEmployeeTaskFinished;
+    public event System.Action OnTaskFinished;
+
+    private void Start()
     {
         StartLocked();
         InstantiateStarterEmployees();
@@ -39,10 +42,13 @@ public class EmployeesController : MonoBehaviour
             employeeUpgrade.SetActive(false);
         }
         else
-        {
-            unlockObject.SetActive(false);
-            employeeUpgrade.SetActive(true);
-        }
+            unlockObject.GetComponent<UnlockItemAction>().OnPurchase(default, default);
+    }
+
+    public void CreateFirstEmployee()
+    {
+        AddNewEmployee();
+        InitStaterEmployees();
     }
 
     private void InstantiateStarterEmployees()
@@ -77,6 +83,7 @@ public class EmployeesController : MonoBehaviour
 
     public EmployeeSO EmployeeSO => employeeData;
     public int GetEmployeeCount() => employees.Count;
+    public List<Employee> GetEmployees() => employees;
 
     public void AddNewEmployee()
     {
@@ -92,9 +99,10 @@ public class EmployeesController : MonoBehaviour
         newEmployee.EmployeeData = employeeData;
 
         employees.Add(newEmployee);
+        newEmployee.OnFinishedTask += () => OnTaskFinished?.Invoke();
     }
 
-    public void StartEmployeesTask()
+    public void StartTask()
     {
         foreach (var employee in employees)
         {

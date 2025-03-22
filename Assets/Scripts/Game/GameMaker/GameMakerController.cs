@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class GameMakerController : MonoBehaviour
+public class GameMakerController : MonoBehaviour, IManagerTask
 {
     public static GameMakerController instance;
 
@@ -13,6 +13,7 @@ public class GameMakerController : MonoBehaviour
     [SerializeField] private float bugRate = 1f;
     [SerializeField] private float maxBugChance = 0.5f;
 
+    public event System.Action OnTaskFinished;
     public event System.Action<float> OnGameProgressChanged;
     public event System.Action<float> OnProgressFinished;
     public event System.Action<GameStatistics, float> OnPublishGame;
@@ -78,6 +79,12 @@ public class GameMakerController : MonoBehaviour
         gameStatistics.ResetWhitoutEvent();
     }
 
+    public void StartTask()
+    {
+        if (_currentGameProgress >= 100)
+            PublishGame();
+    }
+
     #region Progress
     private IEnumerator GameProgress()
     {
@@ -89,6 +96,7 @@ public class GameMakerController : MonoBehaviour
         }
         _currentGameProgress = Mathf.RoundToInt(100);
         OnGameProgressChanged?.Invoke(_currentGameProgress);
+        OnTaskFinished?.Invoke();
     }
     #endregion
 

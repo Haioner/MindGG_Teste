@@ -17,6 +17,7 @@ public class Employee : MonoBehaviour
 
     [Space][SerializeField] protected UnityEvent OnStartTaskEvent;
     [Space][SerializeField] protected UnityEvent OnCompleteTaskEvent;
+    public event System.Action OnFinishedTask;
     public event System.Action<float, float> OnTaskTimeChanged;
     private Coroutine _taskCoroutine;
 
@@ -51,7 +52,7 @@ public class Employee : MonoBehaviour
     private void OnMouseDown()
     {
         StartTask();
-        employeesController.StartEmployeesTask();
+        employeesController.StartTask();
     }
 
     public void ReduceTaskTime(float timeReduction)
@@ -71,6 +72,7 @@ public class Employee : MonoBehaviour
     public virtual void FinishTask()
     {
         CreateFloatNumber();
+        OnFinishedTask?.Invoke();
         OnCompleteTaskEvent?.Invoke();
     }
 
@@ -84,8 +86,8 @@ public class Employee : MonoBehaviour
             yield return null;
         }
 
-        FinishTask();
         _taskCoroutine = null;
+        FinishTask();
     }
 
     public virtual void CreateFloatNumber()
