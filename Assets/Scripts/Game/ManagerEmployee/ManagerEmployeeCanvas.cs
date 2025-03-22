@@ -56,7 +56,7 @@ public class ManagerEmployeeCanvas : MonoBehaviour
 
     private void UpdateUI(Rarity rarity, float workTime)
     {
-        rarityText.text = $"{rarity.raritys.ToString()} {NumberConverter.GetTimePassed(workTime)}";
+        rarityText.text = $"{rarity.raritys.ToString()} - {NumberConverter.GetTimePassed(workTime)}";
 
         if (managerIcons.Count > 0)
         {
