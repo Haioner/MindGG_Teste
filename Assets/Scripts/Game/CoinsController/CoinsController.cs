@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class CoinsController : MonoBehaviour, ICoins
 {
@@ -7,18 +8,19 @@ public class CoinsController : MonoBehaviour, ICoins
     public double AccumulatedCoins { get; private set; }
     private double _coins;
 
-    public event System.Action<double> OnAddCoin;
+    [SerializeField] private UnityEvent OnADDCoinEvent;
+    public event System.Action<double> OnChangeCoins;
 
     private void Start()
     {
         InitCoins();
-        SetCoins();
+        //SetCoins();
     }
 
     private void InitCoins()
     {
-        coinText.text = NumberConverter.ConvertNumberToString(_coins.ToString(), false);
-        OnAddCoin?.Invoke(_coins);
+        UpdateCoinText();
+        OnChangeCoins?.Invoke(_coins);
     }
 
     public double GetCoins()
@@ -30,9 +32,18 @@ public class CoinsController : MonoBehaviour, ICoins
     {
         _coins += amount;
         AccumulatedCoins += amount;
-        coinText.text = NumberConverter.ConvertNumberToString(_coins.ToString(), false);
+        UpdateCoinText();
         Debug.Log($"Coins Added: {amount}");
-        OnAddCoin?.Invoke(_coins);
+
+        if (amount > 0)
+            OnADDCoinEvent?.Invoke();
+
+        OnChangeCoins?.Invoke(_coins);
+    }
+
+    private void UpdateCoinText()
+    {
+        coinText.text = "<sprite=0>" + NumberConverter.ConvertNumberToString(_coins.ToString(), false);
     }
 
     [ContextMenu("AddCoins")]

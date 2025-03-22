@@ -69,6 +69,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1108378929165176156}
   m_SourcePrefab: {fileID: 100100000, guid: 2dbff99dc0f130046b84dbe5201178fc, type: 3}
+--- !u!114 &576711181271333746 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2360689527349956398, guid: 2dbff99dc0f130046b84dbe5201178fc, type: 3}
+  m_PrefabInstance: {fileID: 2936972981127197788}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b73bec422828f049a3c37c5cc84d9b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1806610044059240934 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3589482285668007354, guid: 2dbff99dc0f130046b84dbe5201178fc, type: 3}
@@ -112,6 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e64c9258a68cad4f8e388667b86388f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offsetPos: {x: 2.3, y: 0}
+  floatColor: {r: 0.9019608, g: 0.28235295, b: 0.18039216, a: 1}
   OnPurchaseEvent:
     m_PersistentCalls:
       m_Calls:
@@ -127,6 +140,64 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4460346247411392925}
+        m_TargetAssemblyTypeName: DG.Tweening.DOTweenAnimation, DOTweenPro.Scripts
+        m_MethodName: DORestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 576711181271333746}
+        m_TargetAssemblyTypeName: InstantiateObject, Assembly-CSharp
+        m_MethodName: SpawnObject
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1437989564580333897, guid: ce3c58375c8d9e24fb108dc23eacf367, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5487668523440752122}
+        m_TargetAssemblyTypeName: DG.Tweening.DOTweenAnimation, DOTweenPro.Scripts
+        m_MethodName: DORestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4460346247411392925 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1523461433473521089, guid: 2dbff99dc0f130046b84dbe5201178fc, type: 3}
+  m_PrefabInstance: {fileID: 2936972981127197788}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0390bd8b8ffd640b34fe25065ff1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5487668523440752122 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7271664336647942566, guid: 2dbff99dc0f130046b84dbe5201178fc, type: 3}
+  m_PrefabInstance: {fileID: 2936972981127197788}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0390bd8b8ffd640b34fe25065ff1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6799130347668293183 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8545972108664599139, guid: 2dbff99dc0f130046b84dbe5201178fc, type: 3}
@@ -241,6 +312,14 @@ PrefabInstance:
       propertyPath: objectsToActive.Array.data[1]
       value: 
       objectReference: {fileID: 7426682907691615545}
+    - target: {fileID: 4884667301679607693, guid: 560827668f99acc48aa00db1527f0b55, type: 3}
+      propertyPath: OnPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4884667301679607693, guid: 560827668f99acc48aa00db1527f0b55, type: 3}
+      propertyPath: onPurchaseEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 9216607561313394145, guid: 560827668f99acc48aa00db1527f0b55, type: 3}
       propertyPath: startLocked
       value: 0

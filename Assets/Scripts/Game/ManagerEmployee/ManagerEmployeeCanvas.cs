@@ -13,7 +13,7 @@ public class ManagerEmployeeCanvas : MonoBehaviour
 
     [Header("CACHE")]
     [SerializeField] private ShopItem shopItem;
-    [SerializeField] private List<Image> managerIcons = new List<Image>();
+    [SerializeField] private List<Sprite> managerIcons = new List<Sprite>();
     private ManagerEmployeeController employeeController;
 
     [System.Serializable]
@@ -62,7 +62,7 @@ public class ManagerEmployeeCanvas : MonoBehaviour
         {
             icon.enabled = true;
             int randIcon = Random.Range(0, managerIcons.Count);
-            icon.sprite = managerIcons[randIcon].sprite;
+            icon.sprite = managerIcons[randIcon];
         }
 
         if (nameData != null && nameData.name.Count > 0 && nameData.lastName.Count > 0)

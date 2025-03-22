@@ -14,14 +14,14 @@ public class AvailableMarker : MonoBehaviour
 
     private void Start()
     {
-        _shopManager.iCoins.OnAddCoin += UpdateMarker;
+        _shopManager.iCoins.OnChangeCoins += UpdateMarker;
         shopItem.OnPurchaseItem += UpdateMarker;
         UpdateMarker(_shopManager.iCoins.GetCoins());
     }
 
     private void OnDisable()
     {
-        _shopManager.iCoins.OnAddCoin -= UpdateMarker;
+        _shopManager.iCoins.OnChangeCoins -= UpdateMarker;
         shopItem.OnPurchaseItem -= UpdateMarker;
     }
 

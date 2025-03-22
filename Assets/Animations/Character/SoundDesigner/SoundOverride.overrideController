@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SoundOverride
+  m_Controller: {fileID: 9100000, guid: b9a56760f5958a24faaaf1cf2c10aa6f, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: aec08f7a568470649a37f2b6eebd12dd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 70bd693b2e979dd42a62782a78fa4185, type: 2}

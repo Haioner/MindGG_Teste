@@ -49,8 +49,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3469177020869136980, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -967493579, guid: 05248a207c2d1894993acd43524aef4f, type: 3}
+    - target: {fileID: 3469177020869136980, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
       propertyPath: m_Color.b
-      value: 0.17721963
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3469177020869136980, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
       propertyPath: m_Color.g
@@ -58,8 +62,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3469177020869136980, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4636533529828230281, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: f244aa3539a044644823a06cfba46a2c, type: 2}
     - target: {fileID: 8598560417284715958, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
       propertyPath: m_Name
       value: Marketer
@@ -92,8 +100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EmployeeData: {fileID: 0}
   timeMultiplier: 1
+  areaSpriteRenderer: {fileID: 1523866219017411011}
   floatNumberColor: {r: 0.9568628, g: 0.49411768, b: 0.10588236, a: 1}
   floatNumberRadius: 0.1
+  offsetSpawn: {x: 0, y: 1}
   floatNumberPreffix: <sprite=3>
   OnStartTaskEvent:
     m_PersistentCalls:
@@ -125,6 +135,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!212 &1523866219017411011 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7612676747651000811, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
+  m_PrefabInstance: {fileID: 8971299562431787048}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6778843482158324419 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2491404634486860523, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}

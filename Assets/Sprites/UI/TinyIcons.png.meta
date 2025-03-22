@@ -417,7 +417,7 @@ TextureImporter:
         width: 12
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -425,6 +425,69 @@ TextureImporter:
       bones: []
       spriteID: 3174bd1054ca3c547a179f380bae9226
       internalID: -988049543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TinyIcons_14
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 35
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9711d047d08c942479cfc22b24a2c3c3
+      internalID: -1461890479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TinyIcons_15
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 20
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cd639815c51bcc47b3194fcf656d223
+      internalID: 701835437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TinyIcons_16
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 51
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 171f6c6b63aa5d34580410abce98a5d2
+      internalID: -1125408530
       vertices: []
       indices: 
       edges: []
@@ -446,6 +509,9 @@ TextureImporter:
       TinyIcons_11: -282192616
       TinyIcons_12: -1189104263
       TinyIcons_13: -988049543
+      TinyIcons_14: -1461890479
+      TinyIcons_15: 701835437
+      TinyIcons_16: -1125408530
       TinyIcons_2: 769345854
       TinyIcons_3: -315534573
       TinyIcons_4: 298587256

@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 467501936203152833, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 467501936203152833, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3419889513711240121, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -49,20 +57,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3469177020869136980, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1252888854, guid: d596e718d16db5b4ba12f9565e80a58b, type: 3}
+    - target: {fileID: 3469177020869136980, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
       propertyPath: m_Color.b
-      value: 0.25992346
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3469177020869136980, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
       propertyPath: m_Color.g
-      value: 0.42650983
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3469177020869136980, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
       propertyPath: m_Color.r
-      value: 0.5566038
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8598560417284715958, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
       propertyPath: m_Name
       value: Programmer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999495205627663119, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
+      propertyPath: m_Alpha
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7321746881067124798, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
@@ -103,8 +119,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EmployeeData: {fileID: 0}
   timeMultiplier: 1
+  areaSpriteRenderer: {fileID: 8371463788521438294}
   floatNumberColor: {r: 0.15686275, g: 0.8000001, b: 0.8745099, a: 1}
   floatNumberRadius: 0.1
+  offsetSpawn: {x: 0, y: 1}
   floatNumberPreffix: <sprite=0>
   OnStartTaskEvent:
     m_PersistentCalls:
@@ -136,3 +154,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!212 &8371463788521438294 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7612676747651000811, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
+  m_PrefabInstance: {fileID: 2128162879910745533}
+  m_PrefabAsset: {fileID: 0}

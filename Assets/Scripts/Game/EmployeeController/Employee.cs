@@ -10,9 +10,13 @@ public class Employee : MonoBehaviour
     [SerializeField] protected float timeMultiplier = 1f;
     protected float _currentTime = 0f;
 
+    [Header("Tap Area GFX")]
+    [SerializeField] private SpriteRenderer areaSpriteRenderer;
+
     [Header("FloatNumber")]
     [SerializeField] protected Color floatNumberColor = Color.white;
     [SerializeField] protected float floatNumberRadius = 0.5f;
+    [SerializeField] protected Vector2 offsetSpawn;
     [SerializeField] protected string floatNumberPreffix = "";
 
     [Space][SerializeField] protected UnityEvent OnStartTaskEvent;
@@ -64,6 +68,7 @@ public class Employee : MonoBehaviour
     {
         if(_taskCoroutine == null)
         {
+            areaSpriteRenderer.enabled = false;
             _taskCoroutine = StartCoroutine(CalculateTaskTimer());
             OnStartTaskEvent?.Invoke();
         }
@@ -71,6 +76,7 @@ public class Employee : MonoBehaviour
 
     public virtual void FinishTask()
     {
+        areaSpriteRenderer.enabled = true;
         CreateFloatNumber();
         OnFinishedTask?.Invoke();
         OnCompleteTaskEvent?.Invoke();
@@ -94,6 +100,8 @@ public class Employee : MonoBehaviour
     {
         Vector2 randomOffset = Random.insideUnitCircle * floatNumberRadius;
         Vector3 spawnPosition = transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
+        spawnPosition.x += offsetSpawn.x;
+        spawnPosition.y += offsetSpawn.y;
         GameObject floatNumber = floatNumberObjectPool.GetObject_SetPosAndRot(spawnPosition, Quaternion.identity);
         floatNumber.GetComponent<FloatNumber>().InitFloatNumber(floatNumberPreffix + FloatNumberText(), floatNumberObjectPool, floatNumberColor);
     }

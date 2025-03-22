@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ProgrammerData
   m_EditorClassIdentifier: Assembly-CSharp::ProgrammerSO
   EmployeeName: Programmer
-  EmployeeSprite: {fileID: 6645427384175290001, guid: 4dffe6eab57ca4e4ba2f967307bd1c29, type: 3}
+  EmployeeSprite: {fileID: 1252888854, guid: d596e718d16db5b4ba12f9565e80a58b, type: 3}
   StartEmployeeValue: 10
   StartTaskTime: 5
   employeePrefab: {fileID: 2408336763308568613, guid: 048ea14f51e3d4f4fbc3071bfb13894f, type: 3}

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 public class GamesCanvas : MonoBehaviour
 {
@@ -8,6 +8,8 @@ public class GamesCanvas : MonoBehaviour
     [SerializeField] private Transform contentParent;
     [SerializeField] private List<Sprite> gameImages;
     [SerializeField] private TextMeshProUGUI emptyText;
+    [SerializeField] private TextMeshProUGUI totalProfit;
+
     private Dictionary<PublishedGame, GameObject> gameItems = new Dictionary<PublishedGame, GameObject>();
 
     private void OnEnable()
@@ -15,6 +17,8 @@ public class GamesCanvas : MonoBehaviour
         PublishedGamesController.OnGameCreated += AddGameItem;
         PublishedGamesController.OnGameRemoved += RemoveGameItem;
         PublishedGamesController.OnGameUpdated += UpdateGameItems;
+        PublishedGamesController.OnTotalChanged += UpdateTotalProfit;
+        UpdateTotalProfit(0);
     }
 
     private void OnDisable()
@@ -22,11 +26,13 @@ public class GamesCanvas : MonoBehaviour
         PublishedGamesController.OnGameCreated -= AddGameItem;
         PublishedGamesController.OnGameRemoved -= RemoveGameItem;
         PublishedGamesController.OnGameUpdated -= UpdateGameItems;
+        PublishedGamesController.OnTotalChanged -= UpdateTotalProfit;
     }
 
     private void AddGameItem(PublishedGame game)
     {
         emptyText.enabled = false;
+
         GameObject newItem = objectPool.GetObject_SetPosAndRot(contentParent.position, Quaternion.identity);
 
         GameItem item = newItem.GetComponent<GameItem>();
@@ -41,10 +47,11 @@ public class GamesCanvas : MonoBehaviour
     {
         if (gameItems.TryGetValue(game, out GameObject item))
         {
-            emptyText.enabled = true;
-
             objectPool.DisableObject(item);
             gameItems.Remove(game);
+
+            if (gameItems.Count <= 0)
+                emptyText.enabled = true;
         }
     }
 
@@ -62,6 +69,11 @@ public class GamesCanvas : MonoBehaviour
         }
     }
 
+    private void UpdateTotalProfit(double total)
+    {
+        totalProfit.text = $"<sprite=0>{NumberConverter.ConvertNumberToString(total.ToString(), false)}";
+    }
+
     private void SortGameItems()
     {
         List<PublishedGame> sortedGames = new List<PublishedGame>(gameItems.Keys);
@@ -73,4 +85,5 @@ public class GamesCanvas : MonoBehaviour
             item.transform.SetSiblingIndex(i);
         }
     }
+
 }

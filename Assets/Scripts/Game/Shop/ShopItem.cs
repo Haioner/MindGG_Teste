@@ -45,12 +45,12 @@ public class ShopItem : MonoBehaviour
 
     private void Start()
     {
-        _shopManager.iCoins.OnAddCoin += SetMaxLevelUpgrade_CALLBACK;
+        _shopManager.iCoins.OnChangeCoins += SetMaxLevelUpgrade_CALLBACK;
     }
 
     private void OnDisable()
     {
-        _shopManager.iCoins.OnAddCoin -= SetMaxLevelUpgrade_CALLBACK;
+        _shopManager.iCoins.OnChangeCoins -= SetMaxLevelUpgrade_CALLBACK;
     }
 
     public string GetItemID() => itemID;

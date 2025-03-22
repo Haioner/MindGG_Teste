@@ -21,6 +21,7 @@ public class PublishedGamesController : MonoBehaviour
     public static event System.Action<PublishedGame> OnGameCreated;
     public static event System.Action<PublishedGame> OnGameRemoved;
     public static event System.Action OnGameUpdated;
+    public static event System.Action<double> OnTotalChanged;
 
     [SerializeField] private float popularityDecreaseRate = 0.01f;
     [SerializeField] private Vector2 randomPopularityDecrease, randomCoinsMultipliers;
@@ -84,6 +85,7 @@ public class PublishedGamesController : MonoBehaviour
 
     private void UpdatePublishedGames()
     {
+        double totalProfit = 0;
         for (int i = publishedGames.Count - 1; i >= 0; i--)
         {
             PublishedGame game = publishedGames[i];
@@ -102,7 +104,10 @@ public class PublishedGamesController : MonoBehaviour
             float coinsGenerated = game.GamePopularity * Random.Range(randomCoinsMultipliers.x, randomCoinsMultipliers.y);
             game.GameProfit = coinsGenerated;
             if (coinsGenerated > 0)
+            {
                 _coinsController.ChangeCoins((long)coinsGenerated);
+                totalProfit += coinsGenerated;
+            }
 
             if (game.GamePopularity <= 0)
             {
@@ -111,6 +116,7 @@ public class PublishedGamesController : MonoBehaviour
                 OnGameRemoved?.Invoke(game);
             }
         }
+        OnTotalChanged?.Invoke(totalProfit);
         OnGameUpdated?.Invoke();
     }
 }

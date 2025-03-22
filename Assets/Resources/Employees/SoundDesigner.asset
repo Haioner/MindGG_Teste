@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SoundDesigner
   m_EditorClassIdentifier: 
   EmployeeName: Sound Designer
-  EmployeeSprite: {fileID: 6645427384175290001, guid: 4dffe6eab57ca4e4ba2f967307bd1c29, type: 3}
+  EmployeeSprite: {fileID: -1038588561, guid: 276d114e9e7a40b45adcde5ccca245ad, type: 3}
   StartEmployeeValue: 10
   StartTaskTime: 5
   employeePrefab: {fileID: 6374502845022401317, guid: eb4ee3da5acd7e640af71afa0123619a, type: 3}

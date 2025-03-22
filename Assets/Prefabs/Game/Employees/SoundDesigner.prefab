@@ -49,17 +49,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3469177020869136980, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1038588561, guid: 276d114e9e7a40b45adcde5ccca245ad, type: 3}
+    - target: {fileID: 3469177020869136980, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3469177020869136980, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3469177020869136980, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
       propertyPath: m_Color.r
-      value: 0.11035967
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4636533529828230281, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 7ddf4b75ec5ce7f4cbea70195e0c4c10, type: 2}
     - target: {fileID: 7321746881067124798, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
       propertyPath: OnStartTaskEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -81,6 +89,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6374502845022401317}
   m_SourcePrefab: {fileID: 100100000, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
+--- !u!212 &3013201858042735363 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7612676747651000811, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
+  m_PrefabInstance: {fileID: 4644515283932938984}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3972345499508242270 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8598560417284715958, guid: 76adb8589de2619469da3cdf0670c67b, type: 3}
@@ -100,8 +113,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EmployeeData: {fileID: 0}
   timeMultiplier: 1
+  areaSpriteRenderer: {fileID: 3013201858042735363}
   floatNumberColor: {r: 0.5568628, g: 0.2784314, b: 0.54901963, a: 1}
   floatNumberRadius: 0.1
+  offsetSpawn: {x: 0, y: 1}
   floatNumberPreffix: <sprite=2>
   OnStartTaskEvent:
     m_PersistentCalls:

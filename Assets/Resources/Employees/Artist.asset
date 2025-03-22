@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Artist
   m_EditorClassIdentifier: 
   EmployeeName: Artist
-  EmployeeSprite: {fileID: 6645427384175290001, guid: 4dffe6eab57ca4e4ba2f967307bd1c29, type: 3}
+  EmployeeSprite: {fileID: -2143104168, guid: 28e1235acf9551744a728471e898710d, type: 3}
   StartEmployeeValue: 10
   StartTaskTime: 5
   employeePrefab: {fileID: 6683390411767347529, guid: d7b92a530f158cf4fbf171385c145162, type: 3}

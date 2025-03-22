@@ -5,6 +5,11 @@ public abstract class ShopItem_Action : MonoBehaviour
 {
     protected ShopItem _shopItem;
     private ObjectPool _floatNumberObjectPool;
+
+    [Header("Fail FloatNumber")]
+    [SerializeField] private Vector2 offsetPos;
+    [SerializeField] private Color floatColor = Color.red;
+
     [SerializeField] protected UnityEvent OnPurchaseEvent;
 
     public virtual void Awake()
@@ -31,7 +36,9 @@ public abstract class ShopItem_Action : MonoBehaviour
     {
         Vector2 randomOffset = Random.insideUnitCircle * 0.2f;
         Vector3 spawnPosition = transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
+        spawnPosition.x += offsetPos.x;
+        spawnPosition.y += offsetPos.y;
         GameObject floatNumber = _floatNumberObjectPool.GetObject_SetPosAndRot(spawnPosition, Quaternion.identity);
-        floatNumber.GetComponent<FloatNumber>().InitFloatNumber(message, _floatNumberObjectPool, Color.red);
+        floatNumber.GetComponent<FloatNumber>().InitFloatNumber(message, _floatNumberObjectPool, floatColor);
     }
 }

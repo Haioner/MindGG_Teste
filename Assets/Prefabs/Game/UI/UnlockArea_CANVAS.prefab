@@ -829,6 +829,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22f9942a7e8f15e47b12c05101149ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offsetPos: {x: 2.3, y: 0}
+  floatColor: {r: 0.9019608, g: 0.28235295, b: 0.18039216, a: 1}
+  OnPurchaseEvent:
+    m_PersistentCalls:
+      m_Calls: []
   parentTransform: {fileID: 0}
   objectsToInstantiate: []
   objectsToDeactive:
