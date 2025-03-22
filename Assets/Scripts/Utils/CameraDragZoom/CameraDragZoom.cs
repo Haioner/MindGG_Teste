@@ -44,14 +44,14 @@ public class CameraDragZoom : MonoBehaviour
 
     private void HandleDrag()
     {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
-        //if (Input.GetMouseButtonDown(0))
+        //if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButtonDown(0))
         {
             lastMousePosition = Input.mousePosition;
             currentVelocity = Vector3.zero;
         }
-        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
-            //if (Input.GetMouseButton(0))
+        //if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButton(0))
         {
             Vector3 delta = Input.mousePosition - lastMousePosition;
             currentVelocity = new Vector3(-delta.x * dragSpeed * Time.deltaTime, -delta.y * dragSpeed * Time.deltaTime, 0);
